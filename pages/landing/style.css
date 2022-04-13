@@ -123,6 +123,7 @@ header .container {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 
 .big-title {
@@ -146,6 +147,13 @@ header .container {
 .person {
   width: 123%;
   transform: translate(15%, 25px);
+}
+
+.learn-more {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
 }
 
 .hamburger-menu {
@@ -289,6 +297,7 @@ header .container {
     grid-template-columns: 1fr;
     justify-content: center;
     grid-gap: 2rem;
+    height: 90vh;
   }
 
   .big-title {
@@ -327,4 +336,23 @@ header .container {
   .showcase-area .btn {
     font-size: 0.8rem;
   }
+}
+
+.shape {
+  position: absolute;
+  z-index: 0;
+  width: 500px;
+  bottom: -180px;
+  left: -15px;
+  opacity: 0.1;
+}
+
+.about-us {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-us .text {
+  max-width: fit-content;
 }
