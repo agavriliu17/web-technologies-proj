@@ -31,7 +31,7 @@ a {
 
 .main-wrapper {
   position: relative;
-  padding: 1.7rem 0 2rem;
+  padding: 1.7rem 0 0rem;
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
@@ -355,4 +355,79 @@ header .container {
 
 .about-us .text {
   max-width: fit-content;
+}
+
+
+.footer{
+  background-color: var(--hoverColor);
+  padding-top: 3rem;
+  padding-bottom: 6rem;
+  margin-top: 20rem;
+}
+
+.footer h4{
+  color: var(--darkOne);
+  font-size: 20px;
+  text-transform: capitalize;
+  margin-bottom: 1.4rem;
+}
+
+.footer-container{
+  max-width: 75vw;
+  margin: auto;
+}
+
+.footer ul{
+  list-style: none;
+}
+
+.footer ul li:not(:last-child){
+  margin-bottom: 10px;
+}
+
+.footer ul li a{
+  text-decoration: none;
+  color: var(--darkTwo);
+  display: block;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.footer ul li a:hover{
+  color: #fff;
+  padding-left: 5px;
+}
+
+.footer ul li p{
+  text-decoration: none;
+  color: var(--darkTwo);
+  display: block;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.footer ul li p:hover{
+  color: #fff;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.footer-row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-col{
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media(max-width: 830px){
+  .footer-col{
+    width: 100%;
+    padding: 0 30px;
+    margin-top: 5rem;
+    text-align: center;
+  }
 }
