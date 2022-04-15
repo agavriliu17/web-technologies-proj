@@ -371,7 +371,7 @@ header .container {
   background-position: center;
   background-size: cover;
   background-image: url("../../resources/images/footer-wave.svg");
-  margin-top: 10rem;
+  margin-top: 6rem;
 }
 
 .footer h4 {
@@ -439,5 +439,60 @@ header .container {
     padding: 0 30px;
     margin-top: 5rem;
     text-align: center;
+  }
+}
+
+.unclickable{
+ pointer-events: none;
+}
+
+.services{
+  text-align: center;
+}
+
+.service{
+  display: inline-block;
+  width: calc(100%/4);
+  margin: 1rem;
+  transition: 0.3s;
+  padding: 4rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.service:hover{
+  background-color: var(--mainColor);
+  color: #fff;
+}
+
+.title-services{
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.title-services h1{
+  display: inline;
+  text-transform: uppercase;
+  border-bottom: 4px solid var(--hoverColor);
+  padding-bottom: 1rem;
+  width: auto;
+}
+
+@media(max-width: 830px){
+  .service{
+    width: 70%;
+  }
+}
+
+@media(min-width: 831px){
+  .service{
+    width: 40%;
+  }
+}
+
+@media(min-width: 1150px){
+  .service{
+    width: calc(100%/4);
   }
 }
