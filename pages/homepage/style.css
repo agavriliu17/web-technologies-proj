@@ -9,6 +9,7 @@
   --lightOne: #919191;
   --lightTwo: #aaa;
   --searchBarHeight : 50px;
+  --accentColor: #5A69FA;
 }
 *,
 *::before,
@@ -24,6 +25,7 @@ body {
 
 img {
   width: 100%;
+  display: block;
 }
 
 a {
@@ -97,7 +99,7 @@ header .container {
 
 .sections-buttons a {
   color: var(--lightTwo);
-  margin-left: 4.5rem;
+  margin-left: 2rem;
   display: inline-block;
   transition: 0.3s;
 }
@@ -180,4 +182,188 @@ header .container {
   outline: none;
   font-size: 1.2rem;
   padding: 5px 0;
+}
+
+.display-style-btns{
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px 0;
+  border-radius: 5px;
+}
+
+.display-style-btns button{
+  border: none;
+  font-size: 22px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--lightOne);
+  transition: all 0.3s ease-out;
+}
+
+.display-style-btns button:hover{
+  color: var(--hoverColor);
+}
+
+.active-btn{
+  color: var(--mainColor);
+}
+
+.item-list{
+  margin: 36px 0;
+  display: grid;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  grid-template-columns: repeat(1, 1fr);
+  grid-row-gap: 32px;
+}
+
+.item{
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 4px 0 var(--lightTwo);
+  transition: all 0.2s ease-out;
+}
+
+.item:hover{
+  box-shadow: 0 0 10px 1px var(--darkTwo);
+}
+
+.item-img{
+  padding: 0.2rem 0.2rem 0 0.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.item-img img{
+  height: 55%;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}
+
+.icon-list{
+  position: absolute;
+  bottom: -7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-out;
+}
+
+.icon-list button{
+  border: none;
+  background-color: var(--darkOne);
+  color: #fff;
+  margin: 0 6px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.icon-list button:hover{
+  background-color: var(--accentColor);
+}
+
+.item-img:hover .icon-list{
+  bottom: 0.5rem;
+}
+
+.item-detail{
+  padding: 0.8rem;
+  color: var(--darkOne);
+  text-align: center;
+}
+
+.item-name{
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--mainColor);
+  display: block;
+}
+
+.item-price{
+  margin: 0.2rem 0;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.old-price{
+  text-decoration: line-through;
+  text-decoration-thickness: 0.15rem;
+  opacity: 0.6;
+  font-size: 1.2rem;
+}
+
+.new-price{
+  color: var(--accentColor);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-right: 0.4rem;
+}
+
+.item-detail p{
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--darkOne);
+  line-height: 1.4;
+}
+
+.add-btn{
+  margin: 1rem 0;
+  text-transform: uppercase;
+  border: none;
+  background-color: var(--darkOne);
+  color: #fff;
+  font-size: 1rem;
+  padding: 1rem 1.4rem;
+  letter-spacing: 0.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+
+.add-btn:hover{
+  background-color: var(--accentColor);
+}
+
+@media screen and (min-width: 780px){
+  .item-list{
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 32px;
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+}
+
+@media screen and (min-width: 1080px){
+  .item-list{
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 32px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+
+@media screen and (min-width: 1350px){
+  .item-list{
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 32px;
+    padding-left: 0vw;
+    padding-right: 0vw;
+  }
 }
