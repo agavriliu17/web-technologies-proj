@@ -1,5 +1,6 @@
 var hamburgerMenu;
 var mainWrapper;
+const header = document.querySelector("header");
 
 function declare() {
   mainWrapper = document.querySelector(".main-wrapper");
@@ -9,6 +10,14 @@ function declare() {
 const main = document.querySelector("main");
 
 declare();
+
+//Sticky Navbar
+const stickyNavbar = () => {
+  header.classList.toggle("scrolled", window.pageYOffset > 0);
+};
+
+window.addEventListener("scroll", stickyNavbar);
+stickyNavbar();
 
 //TODO: Implement for all sections
 const scrollInto = () => {

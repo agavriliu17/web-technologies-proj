@@ -4,11 +4,14 @@
   --mainColor: #64bcf4;
   --hoverColor: #5bacdf;
   --backgroundColor: #f1f8fc;
+  --bg-color-transparent: rgba(255, 255, 255, 0.6);
   --darkOne: #312f3a;
   --darkTwo: #45424b;
   --lightOne: #919191;
   --lightTwo: #aaa;
 }
+
+/* --------- General Styling --------- */
 *,
 *::before,
 *::after {
@@ -51,15 +54,56 @@ a {
   z-index: 10;
 }
 
+.btn {
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  color: #fff !important;
+  background-color: var(--mainColor);
+  border-radius: 16px;
+  text-transform: capitalize;
+  transition: 0.3s;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--hoverColor);
+  transform: scale(1) !important;
+}
+
+/* --------- Navbar Styling --------- */
 header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1rem 0px;
+  width: 100%;
   z-index: 70;
+  transition: 0.3s;
+}
+
+header.scrolled {
+  background-color: var(--bg-color-transparent);
+  box-shadow: 0px 5px 20px 0.1px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 0.5rem 0px;
 }
 
 header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  display: inline-block;
+  opacity: 0.9;
+  color: var(--lightTwo);
+  margin-left: 4.5rem;
+  transition: 0.3s;
 }
 
 .overlay {
@@ -91,35 +135,8 @@ header .container {
   align-items: center;
 }
 
-.sections-buttons a {
-  color: var(--lightTwo);
-  margin-left: 4.5rem;
-  display: inline-block;
-  transition: 0.3s;
-}
-
-.sections-buttons a:hover {
+.nav-link:hover {
   color: var(--hoverColor);
-  transform: scale(1.05);
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.9rem 1.8rem;
-  color: #fff !important;
-  background-color: var(--mainColor);
-  border-radius: 16px;
-  text-transform: capitalize;
-  transition: 0.3s;
-  border: none;
-  outline: none;
-  font-family: inherit;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: var(--hoverColor);
-  transform: scale(1) !important;
 }
 
 .showcase-area .container {
