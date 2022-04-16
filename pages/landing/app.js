@@ -1,5 +1,6 @@
 var hamburgerMenu;
 var mainWrapper;
+
 const header = document.querySelector("header");
 
 function declare() {
@@ -19,23 +20,17 @@ const stickyNavbar = () => {
 window.addEventListener("scroll", stickyNavbar);
 stickyNavbar();
 
-//TODO: Implement for all sections
-const scrollInto = () => {
-  var scrollDiv = document
-    .getElementById("about-section")
-    .getBoundingClientRect();
-
-  window.scrollTo({ top: scrollDiv.top, behavior: "smooth" });
-
-  // document.getElementById("footer").scrollIntoView(true);
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-function events() {
-  hamburgerMenu.addEventListener("click", () => {
-    mainWrapper.classList.toggle("active");
-  });
+const logo = document.getElementsByClassName("logo");
+logo[0].addEventListener("click", scrollToTop);
 
-  document.getElementById("about-us").addEventListener("click", scrollInto);
+function events() {
+  // hamburgerMenu.addEventListener("click", () => {
+  //   mainWrapper.classList.toggle("active");
+  // });
 }
 
 events();

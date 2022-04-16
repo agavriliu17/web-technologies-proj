@@ -20,6 +20,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -30,6 +34,10 @@ img {
 
 a {
   text-decoration: none;
+}
+
+section {
+  padding: 5rem 0rem;
 }
 
 .main-wrapper {
