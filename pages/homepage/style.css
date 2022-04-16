@@ -185,17 +185,19 @@ header .container {
 }
 
 .display-style-btns{
-  margin: 10px 0;
+  
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 16px 0;
+  justify-content: flex-start;
+  padding: 0.8rem 0;
+  padding-left: 10vw;
+  padding-right: 10vw;
   border-radius: 5px;
 }
 
 .display-style-btns button{
   border: none;
-  font-size: 22px;
+  font-size: 1.6rem;
   display: inline-block;
   vertical-align: top;
   margin: 0 8px;
@@ -214,7 +216,7 @@ header .container {
 }
 
 .item-list{
-  margin: 36px 0;
+  margin: 0rem 0;
   display: grid;
   padding-left: 10vw;
   padding-right: 10vw;
@@ -227,6 +229,7 @@ header .container {
   overflow: hidden;
   box-shadow: 0 0 4px 0 var(--lightTwo);
   transition: all 0.2s ease-out;
+  background-color: var(--backgroundColor);
 }
 
 .item:hover{
@@ -290,7 +293,7 @@ header .container {
   text-decoration: none;
   font-size: 1.6rem;
   font-weight: 500;
-  color: var(--mainColor);
+  color: var(--accentColor);
   display: block;
 }
 
@@ -310,7 +313,7 @@ header .container {
 }
 
 .new-price{
-  color: var(--accentColor);
+  color: var(--mainColor);
   font-size: 1.4rem;
   font-weight: 600;
   margin-right: 0.4rem;
@@ -341,6 +344,13 @@ header .container {
   background-color: var(--accentColor);
 }
 
+.main-wrapper{
+  background-image: url("../../resources/images/home-wave.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 @media screen and (min-width: 780px){
   .item-list{
     grid-template-columns: repeat(2, 1fr);
@@ -348,6 +358,11 @@ header .container {
     padding-left: 10vw;
     padding-right: 10vw;
   }
+  .display-style-btns{
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+
 }
 
 @media screen and (min-width: 1080px){
@@ -357,12 +372,21 @@ header .container {
     padding-left: 5vw;
     padding-right: 5vw;
   }
+  .display-style-btns{
+    justify-content: flex-end;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
 }
 
 @media screen and (min-width: 1350px){
   .item-list{
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 32px;
+    padding-left: 0vw;
+    padding-right: 0vw;
+  }
+  .display-style-btns{
     padding-left: 0vw;
     padding-right: 0vw;
   }
