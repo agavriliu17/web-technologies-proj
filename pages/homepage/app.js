@@ -22,17 +22,7 @@ function events() {
     mainWrapper.classList.toggle("active");
   });
 
-  grid_btn.addEventListener("click", () => {
-    grid_btn.classList.add("active-btn");
-    list_btn.classList.remove("active-btn");
-    item_list.classList.remove("list-view");
-  });
-
-  list_btn.addEventListener("click", () => {
-    list_btn.classList.add("active-btn");
-    grid_btn.classList.remove("active-btn");
-    item_list.classList.add("list-view");
-  });
+  
 }
 
 //Sticky Navbar
@@ -47,4 +37,15 @@ declare();
 icon.onclick = function () {
   search.classList.toggle("active");
 };
+grid_btn.addEventListener("click", () => {
+    grid_btn.classList.add("active-btn");
+    list_btn.classList.remove("active-btn");
+    item_list.classList.remove("list-view");
+  });
+
+  list_btn.addEventListener("click", () => {
+    list_btn.classList.add("active-btn");
+    grid_btn.classList.remove("active-btn");
+    item_list.classList.add("list-view");
+  });
 events();
