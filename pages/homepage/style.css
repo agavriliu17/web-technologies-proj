@@ -495,7 +495,7 @@ header .container {
     color: var(--accentColor);
   }
 
-  nav.container{
+  nav.container {
     padding-left: 10vw;
     padding-right: 10vw;
   }
@@ -574,7 +574,7 @@ header .container {
   }
 }
 @media screen and (min-width: 780px) {
-  nav.container{
+  nav.container {
     padding-left: 10vw;
     padding-right: 10vw;
   }
@@ -590,8 +590,6 @@ header .container {
     padding-left: 10vw;
     padding-right: 10vw;
   }
-
-  
 
   .btn {
     display: inline-block;
@@ -624,7 +622,7 @@ header .container {
     padding-left: 5vw;
     padding-right: 5vw;
   }
-  nav.container{
+  nav.container {
     padding-left: 5vw;
     padding-right: 5vw;
   }
