@@ -28,9 +28,9 @@ const logo = document.getElementsByClassName("logo");
 logo[0].addEventListener("click", scrollToTop);
 
 function events() {
-  // hamburgerMenu.addEventListener("click", () => {
-  //   mainWrapper.classList.toggle("active");
-  // });
+  hamburgerMenu.addEventListener("click", () => {
+    mainWrapper.classList.toggle("active");
+  });
 }
 
 events();

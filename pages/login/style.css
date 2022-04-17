@@ -17,7 +17,7 @@ main {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #ff8c6b;
+  background-color: #b0cffc;
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -52,21 +52,6 @@ main {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  transition: 0.8s ease-in-out;
-}
-
-.carousel {
-  position: absolute;
-  height: 100%;
-  width: 55%;
-  left: 45%;
-  top: 0;
-  background-color: #ffe0d2;
-  border-radius: 2rem;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  padding-bottom: 2rem;
-  overflow: hidden;
   transition: 0.8s ease-in-out;
 }
 
@@ -220,6 +205,33 @@ main.sign-up-mode .carousel {
   left: 0%;
 }
 
+.carousel {
+  position: absolute;
+  height: 100%;
+  width: 55%;
+  left: 45%;
+  top: 0;
+  background-color: #fcd7ad;
+  border-radius: 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding-bottom: 2rem;
+  overflow: hidden;
+  transition: 0.8s ease-in-out;
+}
+
+.carousel-image {
+  width: 100%;
+}
+
+.text-group {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transform: translateY(0);
+  transition: 0.5s;
+}
+
 @media (max-width: 850px) {
   .box {
     height: auto;
@@ -261,6 +273,10 @@ main.sign-up-mode .carousel {
 
   main.sign-up-mode form.sign-up-form {
     transform: translateX(0%);
+  }
+
+  .images-wrapper {
+    display: none;
   }
 
   .carousel {

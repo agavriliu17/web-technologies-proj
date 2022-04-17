@@ -2,6 +2,7 @@
 
 :root {
   --mainColor: #64bcf4;
+  --mainColor2: #e6deb2;
   --hoverColor: #5bacdf;
   --backgroundColor: #f1f8fc;
   --bg-color-transparent: rgba(255, 255, 255, 0.6);
@@ -274,7 +275,7 @@ header .container {
 }
 
 .footer {
-  background-color: var(--hoverColor);
+  background-color: var(--mainColor2);
   padding-top: 2rem;
   padding-bottom: 2em;
 }
