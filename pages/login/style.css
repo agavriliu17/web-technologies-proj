@@ -24,6 +24,7 @@ main {
   justify-content: center;
 }
 
+/* Form box  */
 .box {
   position: relative;
   width: 100%;
@@ -68,6 +69,7 @@ form {
   transition: opacity 0.02s 0.4s;
 }
 
+/* Sign-up  */
 form.sign-up-form {
   opacity: 0;
   pointer-events: none;
@@ -186,7 +188,7 @@ label {
 .text a:hover {
   color: #8371fd;
 }
-
+/* Sign-in  */
 main.sign-up-mode form.sign-in-form {
   opacity: 0;
   pointer-events: none;
@@ -201,6 +203,7 @@ main.sign-up-mode .forms-wrap {
   left: 55%;
 }
 
+/* Carousel  */
 main.sign-up-mode .carousel {
   left: 0%;
 }
@@ -232,6 +235,8 @@ main.sign-up-mode .carousel {
   transition: 0.5s;
 }
 
+
+/*Media querry*/
 @media (max-width: 850px) {
   .box {
     height: auto;
@@ -275,6 +280,7 @@ main.sign-up-mode .carousel {
     transform: translateX(0%);
   }
 
+/* Image section  */
   .images-wrapper {
     display: none;
   }
