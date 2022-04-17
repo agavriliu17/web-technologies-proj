@@ -25,16 +25,111 @@
       </dl>
     </div>
     <section>
-      <h1>Abstract: </h1>
+      <h1>Abstract</h1>
       <p>
-        SerP is a web application designated to manage data regarding the comercial activities of a multinational company that offers a variety of services in different locations.
+        &emsp;SerP is a web application designated to manage data regarding the comercial activities of a multinational company that offers a variety of services in different locations.
       </p>
     </section>
     <section>
-      <h1>Introduction </h1>
-        <h3>Purpose:</h3>
-        <p>
-        	Provide an easy to use application for the clients to view and buy services from the company, while providing a well structured tool for the company to manage and analyse data.
-        </p>
+		<h1>Introduction</h1>
+
+		<h3>Purpose</h3>
+		<p>
+			&emsp;Provide an easy to use application for the clients to view and buy services from the company, while providing a well structured tool for the company to manage and analyse data.
+		</p>
+		<h1>Structure</h1>
+		<h3>Operating environment</h3>
+		<ul>
+			<li><p>HTML</p></li>
+			<li><p>CSS</p></li>
+			<li><p>JavaScript</p></li>
+			<li><p>Node.js</p></li>
+			<li><p>PostgreSQL</p></li>
+		</ul>
+
+		<h3>Communication interfaces</h3>
+		<p>The main communication interface is the browser.</p>
+
+		<h3>Security requirements</h3>
+		<ul>
+			<li><p>Protect against SQL injection</p></li>
+			<li><p>Use secure cookies</p></li>
+			<li><p>Ensure sitewide SSL</p></li>
+			<li><p>Using JWT for authentication</p></li>
+		</ul>
+
+		<h1>Semantics Overlay</h1>
+
+		<h3>Product functions</h3>
+		<h4>Admin:</h4>
+		<ul>
+			<li><p>Publish services</p></li>
+			<li><p>View statistics</p></li>
+			<li><p>Manage data</p></li>
+		</ul>
+		<h4>Client:</h4>
+		<ul>
+			<li><p>Create an account</p></li>
+			<li><p>View and access services</p></li>
+			<li><p>Order services</p></li>
+			<li><p>Leave feedback</p></li>
+		</ul>
+
+		<h3>User classes and characteristics</h3>
+		<ul>
+			<li><p>
+				<b>Admin</b> : manages data regarding users and services, 
+				has acces to whole database, may access statistics.
+			</p></li>
+			<li><p>
+				<b>Unauthenticated user (Guest)</b>: has access only to the landing page and the log-in/sign-up page. 
+				May create an account.
+			</p></li>
+			<li><p>
+				<b>Authenticated user</b>: can view the list of available services, can order a service, may manage their account and may see their past orders.
+			</p></li>
+		</ul>
+
+		<h3>System Features</h3>
+		<ul>
+			<li><p>Authentication</p></li>
+			<li><p>Authorization</p></li>
+			<li><p>Creating an account</p></li>
+			<li><p>Viewing Services</p></li>
+			<li><p>Ordering Services</p></li>
+			<li><p>Accessing Service History</p></li>
+			<li><p>Accessing statistics regarding services</p></li>
+			<li><p>Adding, removing and changing services</p></li>
+			<li><p>Leaving feedback</p></li>
+		</ul>
+
+		<h3>User manual</h3>
+		<h4>As a client user:</h4>
+		<p>&emsp;On first arrival the user is accessing the landing page. Here he/she can get general information about the company, contact the company or go to the authentication page, where one can log-in to an existing account or create a new one.<br>&emsp;After a succesful authentication, the user is presented the home page where he/she may view, access and order any available services. Also the user can manage his/her account in the "My Account" section.</p>
+
+		<h4>As an admin user:</h4>
+		<p>&emsp;To access the admin dash-board, the user must log-in to an Admin Account. After a succesful authorization, the admin is presented the admin page. Here he/she can see detailed statistics on user activity, manage services and orders and manage his/her account.</p>
+
+		<h1>Task distribution</h1>
+		
+		<h3>Gavriliu Alin</h3>
+		<ul>
+			<li><p>Definition of app structure</p></li>
+			<li><p>[Figma] Create general App Design</p></li>
+			<li><p>[Authentication Page] Implement Log-In section, Sign-Up section</p></li>
+			<li><p>Implement the navigation bar on all pages</p></li>
+			<li><p>Implemented responsive design</p></li>
+			<li><p>[Landing Page] Implement Presentation section, About Us section and Contact Us section</p></li>
+		</ul>
+
+		<h3>Erhan Adrian</h3>
+		<ul>
+			<li><p>Implement Footer section on all pages</p></li>
+			<li><p>[Home Page] Implement Service List, Menu and Search Bar</p></li>
+			<li><p>[Landing Page] Implement Our Services section</p></li>
+			<li><p>Implemented responsive design</p></li>
+			<li><p>Code refactoring</p></li>
+			<li><p>Developed the technical report</p></li>
+		</ul>
     </section>
   </body>
