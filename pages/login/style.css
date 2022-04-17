@@ -8,6 +8,7 @@
   box-sizing: border-box;
 }
 
+/* --------- General Styling --------- */
 body,
 input {
   font-family: "Poppins", sans-serif;
@@ -24,7 +25,7 @@ main {
   justify-content: center;
 }
 
-/* Form box  */
+/*--------- Form box ---------*/
 .box {
   position: relative;
   width: 100%;
@@ -69,7 +70,7 @@ form {
   transition: opacity 0.02s 0.4s;
 }
 
-/* Sign-up  */
+/*--------- Sign-up ---------*/
 form.sign-up-form {
   opacity: 0;
   pointer-events: none;
@@ -188,7 +189,7 @@ label {
 .text a:hover {
   color: #8371fd;
 }
-/* Sign-in  */
+/*--------- Sign-in ---------*/
 main.sign-up-mode form.sign-in-form {
   opacity: 0;
   pointer-events: none;
@@ -203,7 +204,7 @@ main.sign-up-mode .forms-wrap {
   left: 55%;
 }
 
-/* Carousel  */
+/*--------- Carousel ---------*/
 main.sign-up-mode .carousel {
   left: 0%;
 }
@@ -236,7 +237,7 @@ main.sign-up-mode .carousel {
 }
 
 
-/*Media querry*/
+/*---------Media querry---------*/
 @media (max-width: 850px) {
   .box {
     height: auto;
@@ -280,7 +281,7 @@ main.sign-up-mode .carousel {
     transform: translateX(0%);
   }
 
-/* Image section  */
+/*---------Image section---------*/
   .images-wrapper {
     display: none;
   }

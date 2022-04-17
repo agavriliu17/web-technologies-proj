@@ -148,7 +148,7 @@ header .container {
   color: var(--hoverColor);
 }
 
-/*Responsive hamburger menu*/
+/*---------Responsive hamburger menu---------*/
 
 .hamburger-menu {
   position: relative;
@@ -202,7 +202,7 @@ header .container {
   transform: translateY(0) rotate(45deg);
 }
 
-/*Showcase area*/
+/*---------Showcase area---------*/
 .showcase-area .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -267,7 +267,7 @@ header .container {
   opacity: 0.1;
 }
 
-/*About us*/
+/*---------About us---------*/
 .about-us {
   width: 100%;
   display: flex;
@@ -278,7 +278,7 @@ header .container {
   max-width: fit-content;
 }
 
-/* Contact Us Form  */
+/*---------Contact Us Form---------*/
 .form-input {
   display: inline-block;
   padding: 0.9rem 1.5rem;
@@ -312,7 +312,7 @@ textarea .form-input {
   min-height: 175px;
 }
 
-/*Footer*/
+/*---------Footer---------*/
 .footer {
   background-color: var(--mainColor2);
   padding-top: 2rem;
@@ -452,7 +452,7 @@ textarea .form-input {
   line-height: 0.9;
 }
 
-/*Media querry*/
+/*---------Media querry---------*/
 @media (max-width: 830px) {
   .footer-col {
     width: 100%;

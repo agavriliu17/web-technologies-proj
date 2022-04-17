@@ -117,7 +117,7 @@ header .container {
   color: var(--hoverColor);
 }
 
-/*Search-bar*/
+/*---------Search-bar---------*/
 .search-bar {
   position: relative;
   width: var(--searchBarHeight);
@@ -178,9 +178,9 @@ header .container {
   font-size: 1.2rem;
   padding: 5px 0;
 }
-/*Search-bar*/
+/*---------Search-bar End---------*/
 
-/*Item-list*/
+/*---------Item-list---------*/
 .content-control {
   margin: 3rem 0rem 1rem;
   display: flex;
@@ -360,9 +360,9 @@ header .container {
   padding-left: 10vw;
   padding-right: 10vw;
 }
-/*Item-list*/
+/*---------Item-list End---------*/
 
-/*Burger-Menu*/
+/*---------Burger-Menu---------*/
 .hamburger-menu {
   position: relative;
   z-index: 99;
@@ -414,9 +414,9 @@ header .container {
 .main-wrapper.active .bar::after {
   transform: translateY(0) rotate(45deg);
 }
-/*Burger-Menu*/
+/*---------Burger-Menu End---------*/
 
-/*Footer*/
+/*---------Footer---------*/
 .footer {
   margin-top: 8rem;
   padding-top: 2rem;
@@ -483,9 +483,9 @@ header .container {
   margin-left: auto;
   margin-right: auto;
 }
-/*Footer*/
+/*---------Footer End---------*/
 
-/*Media querry*/
+/*---------Media querry---------*/
 @media screen and (max-width: 780px) {
   #show-grid {
     display: none;
@@ -639,7 +639,7 @@ header .container {
     width: 20vw;
   }
 
-  /*List-view*/
+  /*---------List-view---------*/
   .item-list.list-view {
     grid-template-columns: 100%;
   }
@@ -689,7 +689,7 @@ header .container {
     font-size: 2rem;
     font-weight: 700;
   }
-  /*List-view*/
+  /*---------List-view End---------*/
 }
 
 @media screen and (min-width: 1350px) {
