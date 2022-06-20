@@ -1,34 +1,46 @@
 const { equal } = require('assert')
 const http = require('http')
-const { getUsers, getUser, postUser, getUserByNickname } = require('./controllers/userController')
+const { getUsers, postUser, getUserByNickname, getUserById, getUserByEmail } = require('./controllers/userController')
 
 const server = http.createServer((req, res) => {
     if(req.url === '/welcome'){
-        res.writeHead(200, {'Content-Type': 'text/html'})
-        res.end('<h1 style = "text-align:center">Welcome!</h1>')
+        res.writeHead(200, {'Content-Type': 'application/json'})
+        res.end(JSON.stringify({message : 'Welcome'}))
     }
-    else if(req.url === '/api/v1/users' && req.method === 'GET'){ //Get all users, path: /api/v1/users
+
+    //Get all users, path: /api/v1/users
+    else if(req.url === '/api/v1/users' && req.method === 'GET'){ 
         getUsers(req, res)
     }
-    else if(req.url  === '/api/v1/users' && req.method === 'POST'){ //Add user, path: /api/v1/users
-        //Not final
+
+    //Add user, path: /api/v1/users
+    else if(req.url  === '/api/v1/users' && req.method === 'POST'){ 
         postUser(req, res)
     }
-    else if(req.url.match(/\/api\/v1\/users\/([0-9]+)/) && req.method === 'GET'){ //Get user by id, path: /api/v1/users/{id}
+
+    //Get user by id, path: /api/v1/users/{id}
+    else if(req.url.match(/\/api\/v1\/users\/([0-9a-f\-]+$)/) && req.method === 'GET'){ 
         let id = req.url.split('/')[4]
-        //TODO
-        //getUserById(req, res, id)
-        res.writeHead(200, {'Content-Type': 'text/html'})
-        res.end('<h1 style = "text-align:center">Welcome!</h1>')
+        getUserById(req, res, id)
     }
-    else if(req.url.match(/\/api\/v1\/users\/nickname=([a-zA-Z0-9_.\(\)]+$)/) && req.method === 'GET'){ //Get user by nickname, path: /api/v1/users/nickname={nickname}
+
+    //Get user by nickname, path: /api/v1/users/nickname={nickname}
+    else if(req.url.match(/\/api\/v1\/users\/nickname=([a-zA-Z0-9_.\(\)]+$)/) && req.method === 'GET'){ 
         let info = req.url.split('/')[4]
         let nickname = info.split('=')[1]
         getUserByNickname(req, res, nickname)
     }
+
+    //Get user by email, path: /api/v1/users/email={email}
+    else if(req.url.match(/\/api\/v1\/users\/email=(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) && req.method === 'GET'){ 
+        let info = req.url.split('/')[4]
+        let email = info.split('=')[1]
+        getUserByEmail(req, res, email)
+    }
+
     else{
-        res.writeHead(200, {'Content-Type': 'text/html'})
-        res.end('<h2 style = "text-align:center">Unknown request!</h2>')
+        res.writeHead(400, {'Content-Type': 'application/json'})
+        res.end(JSON.stringify({message : 'Unknown Request'}))
     }
     
 })

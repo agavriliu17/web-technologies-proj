@@ -23,6 +23,7 @@ function findAll(){
                 resolve(res.rows)
             }
             else{
+                console.log(`Error code: ${err.code}`)
                 console.log(err.stack)
                 resolve(null)
             }
@@ -39,14 +40,19 @@ function insertUser(user){
         client.connect()
         client.query('INSERT INTO users VALUES ($1, $2, $3, $4, $5)', [newUser.id, newUser.nickname, newUser.name, newUser.password, newUser.email], (err, res) => {
             if(!err){
+                resolve(newUser)
                 console.log('Transaction successful!')
             }
+            else if(err.code == 23505){
+                resolve("invalid data")
+            }
             else{
+                resolve(null)
+                console.log(`Error code: ${err.code}`)
                 console.log(err.stack)
             }
             client.end()
         })
-        resolve(newUser)
     })
 }
 
@@ -60,6 +66,7 @@ function findUserByNickname(nickname){
                 resolve(res.rows[0])
             }
             else{
+                console.log(`Error code: ${err.code}`)
                 console.log(err.stack)
                 resolve(null)
             }
@@ -69,8 +76,52 @@ function findUserByNickname(nickname){
     })
 }
 
+function findUserById(id){
+    return new Promise((resolve, reject) => {
+        const client = getClient()
+        client.connect()
+        client.query('SELECT * FROM users WHERE id = $1', [id], (err, res) => {
+            if(!err){
+                console.log('Transaction successful!')
+                resolve(res.rows[0])
+            }
+            else if(err.code == '22P02'){
+                console.log('Invalid UUID format')
+                resolve('invalid format')
+            }
+            else{
+                console.log(`Error code: ${err.code}`)
+                console.log(err.stack)
+                resolve(null)
+            }
+            client.end()
+        })
+    })
+}
+
+function findUserByEmail(email){
+    return new Promise((resolve, reject) => {
+        const client = getClient()
+        client.connect()
+        client.query('SELECT * FROM users WHERE email = $1', [email], (err, res) => {
+            if(!err){
+                console.log('Transaction successful!')
+                resolve(res.rows[0])
+            }
+            else{
+                console.log(`Error code: ${err.code}`)
+                console.log(err.stack)
+                resolve(null)
+            }
+            client.end()
+        })
+    })
+}
+
 module.exports = {
     findAll,
     insertUser,
-    findUserByNickname
+    findUserByNickname,
+    findUserById,
+    findUserByEmail
 }
