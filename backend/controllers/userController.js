@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/userModel");
 const { getPostData } = require("../utils");
@@ -28,13 +29,13 @@ async function postUser(req, res) {
       email,
     };
     let newUser = await User.insertUser(user);
-    if (newUser == "invalid data") {
+    if (newUser === "invalid data") {
       res.writeHead(409, { "Content-Type": "application/json" });
       return res.end(
         JSON.stringify({ message: "User with this data already exists" })
       );
     }
-    if (newUser == null) {
+    if (newUser === null) {
       res.writeHead(400, { "Content-Type": "application/json" });
       return res.end(
         JSON.stringify({ message: "Something went wrong: User not added" })
@@ -106,7 +107,7 @@ async function getUserByEmail(req, res, email) {
 //Auth routes
 async function registerUser(req, res) {
   try {
-    let body = await getPostData(req);
+    const body = await getPostData(req);
     const { name, nickname, password, email } = JSON.parse(body);
     const user = {
       name,
@@ -143,6 +144,39 @@ async function registerUser(req, res) {
   }
 }
 
+async function loginUser(req, res) {
+  try {
+    const body = await getPostData(req);
+    const { email, password } = JSON.parse(body);
+
+    const user = await User.findUserByEmail(email);
+
+    if (!user) {
+      res.writeHead(401, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "User not found!" }));
+    }
+
+    const valid = await bcrypt.compare(password, user.password);
+
+    if (!valid) {
+      res.writeHead(401, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "Provided password is invalid!" }));
+    }
+
+    //TODO: Move secret key in env
+    const token = jwt.sign({ userId: user.id }, "supersecretkey", {
+      expiresIn: "2h",
+    });
+
+    res.writeHead(200, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify(token));
+  } catch (e) {
+    console.log(e);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Something went wrong" }));
+  }
+}
+
 module.exports = {
   getUsers,
   postUser,
@@ -150,4 +184,5 @@ module.exports = {
   getUserById,
   getUserByEmail,
   registerUser,
+  loginUser,
 };
