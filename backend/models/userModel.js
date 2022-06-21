@@ -1,17 +1,5 @@
-const names = ['John', 'Nick', 'Rick', 'Dan', 'Martin', 'Geremmy', 'Jack', 'Juan'];
 const { v4: uuidv4 } = require('uuid')
 const { getClient } = require('../databasePG')
-
-//User model class
-class User{
-    constructor(id, nickname, name, password, email){
-        this.id = id
-        this.name = name
-        this.nickname = nickname
-        this.password = password
-        this.email = email
-    }
-}
 
 function findAll(){
     return new Promise((resolve, reject) => {
@@ -38,7 +26,7 @@ function insertUser(user){
         const newUser = {id: uuidv4(), ...user}
         const client = getClient()
         client.connect()
-        client.query('INSERT INTO users VALUES ($1, $2, $3, $4, $5)', [newUser.id, newUser.nickname, newUser.name, newUser.password, newUser.email], (err, res) => {
+        client.query('INSERT INTO users VALUES ($1, $2, $3, $4, $5, $6)', [newUser.id, newUser.nickname, newUser.name, newUser.password, newUser.email, newUser.isAdmin], (err, res) => {
             if(!err){
                 resolve(newUser)
                 console.log('Transaction successful!')
@@ -101,21 +89,64 @@ function findUserById(id){
 
 function findUserByEmail(email){
     return new Promise((resolve, reject) => {
-        const client = getClient()
-        client.connect()
+        const client = getClient();
+        client.connect();
         client.query('SELECT * FROM users WHERE email = $1', [email], (err, res) => {
             if(!err){
-                console.log('Transaction successful!')
-                resolve(res.rows[0])
+                console.log('Transaction successful!');
+                resolve(res.rows[0]);
             }
             else{
-                console.log(`Error code: ${err.code}`)
-                console.log(err.stack)
-                resolve(null)
+                console.log(`Error code: ${err.code}`);
+                console.log(err.stack);
+                resolve(null);
             }
-            client.end()
-        })
+            client.end();
+        });
+    });
+}
+
+function updateUser(user, id){
+    return new Promise((resolve, reject) => {
+        const client = getClient();
+        client.connect();
+        client.query("UPDATE users SET nickname = $1, name = $2, password = $3, email = $4, isAdmin = $5 WHERE id = $6", 
+            [user.nickname, user.name, user.password, user.email, user.isAdmin, id],
+            (err, res) =>{
+                if(!err){
+                    console.log('Transaction successful!');
+                    resolve(user);
+                }
+                else if(err.code === "23505"){
+                    console.log('Duplicated value!');
+                    resolve('duplicated value');
+                }
+                else{
+                    console.log(`Error code: ${err.code}`);
+                    console.log(err.stack);
+                    resolve(null);
+                }
+                client.end();
+            })
     })
+}
+
+function deleteUser(id){
+    const client = getClient();
+    client.connect();
+    client.query('DELETE FROM users WHERE id = $1', [id], (err, res) => {
+        if(!err){
+            console.log('Deleted successfully!');
+            resolve('deleted');
+        }
+        else{
+            console.log(`Error code: ${err.code}`);
+            console.log(err.stack);
+            resolve(null);
+        }
+        client.end();
+    });
+
 }
 
 module.exports = {
@@ -123,5 +154,7 @@ module.exports = {
     insertUser,
     findUserByNickname,
     findUserById,
-    findUserByEmail
+    findUserByEmail,
+    updateUser,
+    deleteUser,
 }

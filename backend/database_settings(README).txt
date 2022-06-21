@@ -13,6 +13,7 @@ Table "users" :
 	    name character varying COLLATE pg_catalog."default",
 	    password character varying COLLATE pg_catalog."default",
 	    email character varying COLLATE pg_catalog."default",
+		"isAdmin" boolean DEFAULT false,
 	    CONSTRAINT users_pkey PRIMARY KEY (id),
 	    CONSTRAINT "uniqueEmail" UNIQUE (email),
 	    CONSTRAINT "uniqueNickname" UNIQUE (nickname)

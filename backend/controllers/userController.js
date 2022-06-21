@@ -4,8 +4,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const { getPostData } = require("../utils");
 
-// @desc Get all users
-// @route GET api/v1/users
 async function getUsers(req, res) {
   try {
     const users = await User.findAll();
@@ -21,12 +19,16 @@ async function getUsers(req, res) {
 async function postUser(req, res) {
   try {
     let body = await getPostData(req);
-    const { name, nickname, password, email } = JSON.parse(body);
+    let { name, nickname, password, email, isAdmin } = JSON.parse(body);
+    if(typeof isAdmin === 'undefined'){
+      isAdmin = false;
+    }
     const user = {
       name,
       nickname,
       password,
       email,
+      isAdmin
     };
     let newUser = await User.insertUser(user);
     if (newUser === "invalid data") {
@@ -108,12 +110,16 @@ async function getUserByEmail(req, res, email) {
 async function registerUser(req, res) {
   try {
     const body = await getPostData(req);
-    const { name, nickname, password, email } = JSON.parse(body);
+    let { name, nickname, password, email, isAdmin } = JSON.parse(body);
+    if(typeof isAdmin === 'undefined'){
+      isAdmin = false;
+    }
     const user = {
       name,
       nickname,
       password,
       email,
+      isAdmin
     };
 
     const saltRounds = 10;
@@ -177,6 +183,99 @@ async function loginUser(req, res) {
   }
 }
 
+
+//Update routes
+
+async function updateUserById(req, res, id){
+    try {
+      const user = await User.findUserById(id);
+      if (!user) {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: "User Not Found" }));
+      } 
+      else if (user === "invalid format") {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: "Wrong Id Format" }));
+      } 
+      else {
+        performUpdate(req, res, user);
+      }
+    } catch (error) {
+      console.log(error);
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "Something went wrong" }));
+    }
+}
+
+async function updateUserByNickname(req, res, nickname){
+  try {
+    const user = await User.findUserByNickname(nickname);
+    if (!user) {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "User Not Found" }));
+    } 
+    else {
+      performUpdate(req, res, user);
+    }
+  } catch (error) {
+    console.log(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Something went wrong" }));
+  }
+}
+
+async function updateUserByEmail(req, res, email){
+  try {
+    const user = await User.findUserByEmail(email);
+    if (!user) {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "User Not Found" }));
+    } 
+    else{
+      performUpdate(req, res, user);
+    }
+  } catch (error) {
+    console.log(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Something went wrong" }));
+  }
+}
+
+//Update information for user
+async function performUpdate(req, res, user){
+  const body = await getPostData(req);
+  let { name, nickname, password, email, isAdmin } = JSON.parse(body);
+  if(typeof isAdmin === 'undefined'){
+    isAdmin = false;
+  }
+
+  const saltRounds = 10;
+  const encryptedPassword = await bcrypt.hash(password, saltRounds);
+
+  const userInfo = {
+    name: name || user.name,
+    nickname: nickname || user.nickname,
+    password: encryptedPassword || user.password,
+    email: email || user.email,
+    isAdmin: isAdmin || user.isAdmin
+  };
+
+  const updatedUser = await User.updateUser(userInfo, user.id);
+
+  if(updatedUser === null){
+    res.writeHead(400, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "User not updated: something went wrong!" }));
+  }
+  else if(updatedUser === 'duplicated value'){
+    res.writeHead(400, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "User not updated: credentials not unique!" }));
+  }
+  else{
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(updatedUser));
+  }
+}
+
 module.exports = {
   getUsers,
   postUser,
@@ -185,4 +284,7 @@ module.exports = {
   getUserByEmail,
   registerUser,
   loginUser,
+  updateUserById,
+  updateUserByNickname,
+  updateUserByEmail,
 };

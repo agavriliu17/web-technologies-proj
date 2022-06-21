@@ -7,6 +7,9 @@ const {
   getUserByEmail,
   registerUser,
   loginUser,
+  updateUserById,
+  updateUserByNickname,
+  updateUserByEmail,
 } = require("./controllers/userController");
 
 const server = http.createServer((req, res) => {
@@ -30,36 +33,63 @@ const server = http.createServer((req, res) => {
     loginUser(req, res);
   }
 
-  //Get user by id, path: /api/v1/users/{id}
+  //Get user by id, path: /api/v1/users/id={id}
   else if (
-    req.url.match(/\/api\/v1\/users\/([0-9a-f\-]+$)/) &&
+    req.url.match(ROUTES.getUserById) &&
     req.method === "GET"
   ) {
-    let id = req.url.split("/")[4];
+    const info = req.url.split("/")[4];
+    const id = info.split('=')[1]
     getUserById(req, res, id);
   }
 
   //Get user by nickname, path: /api/v1/users/nickname={nickname}
   else if (
-    req.url.match(/\/api\/v1\/users\/nickname=([a-zA-Z0-9_.\(\)]+$)/) &&
+    req.url.match(ROUTES.getUserByNickname) &&
     req.method === "GET"
   ) {
-    let info = req.url.split("/")[4];
-    let nickname = info.split("=")[1];
+    const info = req.url.split("/")[4];
+    const nickname = info.split("=")[1];
     getUserByNickname(req, res, nickname);
   }
 
   //Get user by email, path: /api/v1/users/email={email}
   else if (
-    req.url.match(
-      /\/api\/v1\/users\/email=(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    ) &&
+    req.url.match(ROUTES.getUserByEmail) &&
     req.method === "GET"
   ) {
-    let info = req.url.split("/")[4];
-    let email = info.split("=")[1];
+    const info = req.url.split("/")[4];
+    const email = info.split("=")[1];
     getUserByEmail(req, res, email);
-  } else {
+  } 
+  //Update user by id, path: /api/v1/users/id={id}
+  else if (
+    req.url.match(ROUTES.getUserById) &&
+    req.method === "PUT"
+  ) {
+    const info = req.url.split("/")[4];
+    const id = info.split('=')[1]
+    updateUserById(req, res, id);
+  }
+  //Update user by nickname, path: /api/v1/users/nickname={nickname}
+  else if (
+    req.url.match(ROUTES.getUserByNickname) &&
+    req.method === "PUT"
+  ) {
+    const info = req.url.split("/")[4];
+    const nickname = info.split("=")[1];
+    updateUserByNickname(req, res, nickname);
+  }
+  //Update user by email, path: /api/v1/users/email={email}
+  else if (
+    req.url.match(ROUTES.getUserByEmail) &&
+    req.method === "PUT"
+  ) {
+    const info = req.url.split("/")[4];
+    const email = info.split("=")[1];
+    updateUserByEmail(req, res, email);
+  } 
+  else {
     res.writeHead(400, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }
