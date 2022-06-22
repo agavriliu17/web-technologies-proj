@@ -1,5 +1,5 @@
-const { v4: uuidv4 } = require('uuid')
-const { getClient } = require('../databasePG')
+const { v4: uuidv4 } = require('uuid');
+const { getClient } = require('../databasePG');
 
 function findAll(){
     return new Promise((resolve, reject) => {

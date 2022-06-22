@@ -1,5 +1,5 @@
-const Service = require("../models/serviceModel")
-const { getPostData } = require("../utils")
+const Service = require("../models/serviceModel");
+const { getPostData } = require("../utils");
 
 async function getServices(req, res){
     try {

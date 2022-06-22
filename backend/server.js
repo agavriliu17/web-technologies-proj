@@ -21,8 +21,11 @@ const {
   getServicesByName,
   updateService,
   deleteService,
-  
 } = require("./controllers/serviceController");
+const {
+  getOrders, 
+  addOrder,
+} = require("./controllers/ordersController")
 
 const server = http.createServer((req, res) => {
   if (req.url === ROUTES.welcome) {
@@ -96,6 +99,15 @@ const server = http.createServer((req, res) => {
     const info = req.url.split("/")[4];
     const id = info.split("=")[1];
     deleteService(req, res, id);
+  }
+  //Orders:
+  //Get all orders, path: /api/v1/orders
+  else if(req.url === ROUTES.getOrders && req.method == 'GET'){
+    getOrders(req, res);
+  }
+  //Add new order, path: /api/v1/add-order
+  else if(req.url === ROUTES.addOrder && req.method == 'POST'){
+    addOrder(req, res);
   }
   else {
     res.writeHead(400, { "Content-Type": "application/json" });

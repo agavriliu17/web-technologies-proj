@@ -10,6 +10,8 @@ const ROUTES = {
   addService: '/api/v1/add-service',
   findServiceById: /\/api\/v1\/services\/id=([0-9a-f\-]+$)/,
   findServicesByName: /\/api\/v1\/services\/name=([a-zA-Z0-9_!\s.\(\)]+$)/,
+  getOrders: '/api/v1/orders',
+  addOrder: '/api/v1/add-order',
 };
 
 module.exports = {
