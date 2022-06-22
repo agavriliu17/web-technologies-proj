@@ -241,6 +241,64 @@ async function updateUserByEmail(req, res, email){
   }
 }
 
+//Delete routes
+
+async function deleteUserById(req, res, id){
+  try {
+    const user = await User.findUserById(id);
+    if (!user) {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "User Not Found" }));
+    } 
+    else if (user === "invalid format") {
+      res.writeHead(400, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "Wrong Id Format" }));
+    } 
+    else {
+      performDelete(req, res, user);
+    }
+  } catch (error) {
+    console.log(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Something went wrong" }));
+  }
+
+}
+
+async function deleteUserByNickname(req, res, nickname){
+  try {
+    const user = await User.findUserByNickname(nickname);
+    if (!user) {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "User Not Found" }));
+    } 
+    else {
+      performDelete(req, res, user);
+    }
+  } catch (error) {
+    console.log(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Something went wrong" }));
+  }
+}
+
+async function deleteUserByEmail(req, res, email){
+  try {
+    const user = await User.findUserByEmail(email);
+    if (!user) {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "User Not Found" }));
+    } 
+    else{
+      performDelete(req, res, user);
+    }
+  } catch (error) {
+    console.log(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Something went wrong" }));
+  }
+}
+
 //Update information for user
 async function performUpdate(req, res, user){
   const body = await getPostData(req);
@@ -276,6 +334,19 @@ async function performUpdate(req, res, user){
   }
 }
 
+//Delete user
+async function performDelete(req, res, user){
+  const deleteResult = User.deleteUser(user.id);
+  if(deleteResult === null){
+    res.writeHead(400, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "User not deleted: something went wrong!" }));
+  }
+  else{
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: `User ${user.nickname} deleted!` }));
+  }
+}
+
 module.exports = {
   getUsers,
   postUser,
@@ -287,4 +358,7 @@ module.exports = {
   updateUserById,
   updateUserByNickname,
   updateUserByEmail,
+  deleteUserByEmail,
+  deleteUserByNickname,
+  deleteUserById,
 };

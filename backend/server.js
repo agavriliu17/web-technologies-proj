@@ -10,6 +10,9 @@ const {
   updateUserById,
   updateUserByNickname,
   updateUserByEmail,
+  deleteUserById,
+  deleteUserByNickname,
+  deleteUserByEmail,
 } = require("./controllers/userController");
 
 const server = http.createServer((req, res) => {
@@ -88,6 +91,33 @@ const server = http.createServer((req, res) => {
     const info = req.url.split("/")[4];
     const email = info.split("=")[1];
     updateUserByEmail(req, res, email);
+  }
+  //Delete user by id, path: /api/v1/users/id={id}
+  else if (
+    req.url.match(ROUTES.getUserById) &&
+    req.method === "DELETE"
+  ) {
+    const info = req.url.split("/")[4];
+    const id = info.split('=')[1]
+    deleteUserById(req, res, id);
+  }
+  //Delete user by nickname, path: /api/v1/users/nickname={nickname}
+  else if (
+    req.url.match(ROUTES.getUserByNickname) &&
+    req.method === "DELETE"
+  ) {
+    const info = req.url.split("/")[4];
+    const nickname = info.split("=")[1];
+    deleteUserByNickname(req, res, nickname);
+  }
+  //Delete user by email, path: /api/v1/users/email={email}
+  else if (
+    req.url.match(ROUTES.getUserByEmail) &&
+    req.method === "DELETE"
+  ) {
+    const info = req.url.split("/")[4];
+    const email = info.split("=")[1];
+    deleteUserByEmail(req, res, email);
   } 
   else {
     res.writeHead(400, { "Content-Type": "application/json" });

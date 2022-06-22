@@ -132,20 +132,22 @@ function updateUser(user, id){
 }
 
 function deleteUser(id){
-    const client = getClient();
-    client.connect();
-    client.query('DELETE FROM users WHERE id = $1', [id], (err, res) => {
-        if(!err){
-            console.log('Deleted successfully!');
-            resolve('deleted');
-        }
-        else{
-            console.log(`Error code: ${err.code}`);
-            console.log(err.stack);
-            resolve(null);
-        }
-        client.end();
-    });
+    return new Promise((resolve, reject) => {
+        const client = getClient();
+        client.connect();
+        client.query('DELETE FROM users WHERE id = $1', [id], (err, res) => {
+            if(!err){
+                console.log('Deleted successfully!');
+                resolve('deleted');
+            }
+            else{
+                console.log(`Error code: ${err.code}`);
+                console.log(err.stack);
+                resolve(null);
+            }
+            client.end();
+        });
+    })
 
 }
 
