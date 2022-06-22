@@ -70,21 +70,21 @@ function findUserById(id){
         client.connect()
         client.query('SELECT * FROM users WHERE id = $1', [id], (err, res) => {
             if(!err){
-                console.log('Transaction successful!')
-                resolve(res.rows[0])
+                console.log('Transaction successful!');
+                resolve(res.rows[0]);
             }
             else if(err.code == '22P02'){
-                console.log('Invalid UUID format')
-                resolve('invalid format')
+                console.log('Invalid UUID format');
+                resolve('invalid format');
             }
             else{
-                console.log(`Error code: ${err.code}`)
-                console.log(err.stack)
-                resolve(null)
+                console.log(`Error code: ${err.code}`);
+                console.log(err.stack);
+                resolve(null);
             }
-            client.end()
-        })
-    })
+            client.end();
+        });
+    });
 }
 
 function findUserByEmail(email){

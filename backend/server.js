@@ -14,6 +14,15 @@ const {
   deleteUserByNickname,
   deleteUserByEmail,
 } = require("./controllers/userController");
+const {
+  getServices, 
+  addService,
+  getServiceById,
+  getServicesByName,
+  updateService,
+  deleteService,
+  
+} = require("./controllers/serviceController");
 
 const server = http.createServer((req, res) => {
   if (req.url === ROUTES.welcome) {
@@ -56,12 +65,51 @@ const server = http.createServer((req, res) => {
     const email = info.split("=")[1];
     processEmailRequest(req, res, email);
   } 
+  //Services:
+  //Get all services, path: /api/v1/services
+  else if(req.url === ROUTES.getServices && req.method === 'GET'){
+    getServices(req, res);
+  }
+  //Add new service, path: /api/v1/add-service
+  else if(req.url === ROUTES.addService && req.method === 'POST'){
+    addService(req, res);
+  }
+  //Get a service by it's id, path: /api/v1/services/id={id}
+  else if(req.url.match(ROUTES.findServiceById) && req.method === 'GET'){
+    const info = req.url.split("/")[4];
+    const id = info.split("=")[1];
+    getServiceById(req, res, id);
+  }
+  //Get all services that have the name provided or a similar name, path: /api/v1/services/name={name}
+  else if(req.url.match(ROUTES.findServicesByName) && req.method === 'GET'){
+    const info = req.url.split("/")[4];
+    const name = info.split("=")[1];
+    getServicesByName(req, res, name);
+  }
+  //Update service info by id, path: /api/v1/services/id={id}
+  else if(req.url.match(ROUTES.findServiceById) && req.method == 'PUT'){
+    const info = req.url.split("/")[4];
+    const id = info.split("=")[1];
+    updateService(req, res, id);
+  }
+  else if(req.url.match(ROUTES.findServiceById) && req.method == 'DELETE'){
+    const info = req.url.split("/")[4];
+    const id = info.split("=")[1];
+    deleteService(req, res, id);
+  }
   else {
     res.writeHead(400, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }
 });
 
+//Start:
+const PORT = process.env.PORT || 3010;
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+//User request handlers
 function processIdRequest(req, res, id){
   if(req.method === 'GET'){
     getUserById(req, res, id);
@@ -109,7 +157,3 @@ function processNicknameRequest(req, res, nickname){
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }
 }
-
-const PORT = process.env.PORT || 3010;
-
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

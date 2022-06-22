@@ -23,3 +23,21 @@ Table "users" :
 
 	ALTER TABLE IF EXISTS public.users
 	    OWNER to developer;
+
+
+Table "services":
+
+	CREATE TABLE IF NOT EXISTS public.services
+	(
+		id uuid NOT NULL,
+		name character varying COLLATE pg_catalog."default",
+		description character varying COLLATE pg_catalog."default",
+		price character varying COLLATE pg_catalog."default",
+		region character varying COLLATE pg_catalog."default",
+		CONSTRAINT services_pkey PRIMARY KEY (id)
+	)
+
+	TABLESPACE pg_default;
+
+	ALTER TABLE IF EXISTS public.services
+		OWNER to developer;
