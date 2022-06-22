@@ -36,94 +36,79 @@ const server = http.createServer((req, res) => {
     loginUser(req, res);
   }
 
-  //Get user by id, path: /api/v1/users/id={id}
-  else if (
-    req.url.match(ROUTES.getUserById) &&
-    req.method === "GET"
-  ) {
+  //Process user by id, path: /api/v1/users/id={id}
+  else if (req.url.match(ROUTES.getUserById)) {
     const info = req.url.split("/")[4];
-    const id = info.split('=')[1]
-    getUserById(req, res, id);
+    const id = info.split('=')[1];
+    processIdRequest(req, res, id);
   }
 
-  //Get user by nickname, path: /api/v1/users/nickname={nickname}
-  else if (
-    req.url.match(ROUTES.getUserByNickname) &&
-    req.method === "GET"
-  ) {
+  //Process user by nickname, path: /api/v1/users/nickname={nickname}
+  else if (req.url.match(ROUTES.getUserByNickname)) {
     const info = req.url.split("/")[4];
     const nickname = info.split("=")[1];
-    getUserByNickname(req, res, nickname);
+    processNicknameRequest(req, res, nickname);
   }
 
-  //Get user by email, path: /api/v1/users/email={email}
-  else if (
-    req.url.match(ROUTES.getUserByEmail) &&
-    req.method === "GET"
-  ) {
+  //Process user by email, path: /api/v1/users/email={email}
+  else if (req.url.match(ROUTES.getUserByEmail)) {
     const info = req.url.split("/")[4];
     const email = info.split("=")[1];
-    getUserByEmail(req, res, email);
-  } 
-  //Update user by id, path: /api/v1/users/id={id}
-  else if (
-    req.url.match(ROUTES.getUserById) &&
-    req.method === "PUT"
-  ) {
-    const info = req.url.split("/")[4];
-    const id = info.split('=')[1]
-    updateUserById(req, res, id);
-  }
-  //Update user by nickname, path: /api/v1/users/nickname={nickname}
-  else if (
-    req.url.match(ROUTES.getUserByNickname) &&
-    req.method === "PUT"
-  ) {
-    const info = req.url.split("/")[4];
-    const nickname = info.split("=")[1];
-    updateUserByNickname(req, res, nickname);
-  }
-  //Update user by email, path: /api/v1/users/email={email}
-  else if (
-    req.url.match(ROUTES.getUserByEmail) &&
-    req.method === "PUT"
-  ) {
-    const info = req.url.split("/")[4];
-    const email = info.split("=")[1];
-    updateUserByEmail(req, res, email);
-  }
-  //Delete user by id, path: /api/v1/users/id={id}
-  else if (
-    req.url.match(ROUTES.getUserById) &&
-    req.method === "DELETE"
-  ) {
-    const info = req.url.split("/")[4];
-    const id = info.split('=')[1]
-    deleteUserById(req, res, id);
-  }
-  //Delete user by nickname, path: /api/v1/users/nickname={nickname}
-  else if (
-    req.url.match(ROUTES.getUserByNickname) &&
-    req.method === "DELETE"
-  ) {
-    const info = req.url.split("/")[4];
-    const nickname = info.split("=")[1];
-    deleteUserByNickname(req, res, nickname);
-  }
-  //Delete user by email, path: /api/v1/users/email={email}
-  else if (
-    req.url.match(ROUTES.getUserByEmail) &&
-    req.method === "DELETE"
-  ) {
-    const info = req.url.split("/")[4];
-    const email = info.split("=")[1];
-    deleteUserByEmail(req, res, email);
+    processEmailRequest(req, res, email);
   } 
   else {
     res.writeHead(400, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }
 });
+
+function processIdRequest(req, res, id){
+  if(req.method === 'GET'){
+    getUserById(req, res, id);
+  }
+  else if(req.method === 'PUT'){
+    updateUserById(req, res, id);
+  }
+  else if(req.method === 'DELETE'){
+    deleteUserById(req, res, id);
+  }
+  else{
+    res.writeHead(400, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Unknown Request" }));
+  }
+}
+
+function processEmailRequest(req, res, email){
+  if(req.method === 'GET'){
+    getUserByEmail(req, res, email);
+  }
+  else if(req.method === 'PUT'){
+    updateUserByEmail(req, res, email);
+  }
+  else if(req.method === 'DELETE'){
+    deleteUserByEmail(req, res, email);
+  }
+  else{
+    res.writeHead(400, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Unknown Request" }));
+  }
+}
+
+function processNicknameRequest(req, res, nickname){
+  if(req.method === 'GET'){
+    getUserByNickname(req, res, nickname);
+  }
+  else if(req.method === 'PUT'){
+    updateUserByNickname(req, res, nickname);
+  }
+  else if(req.method === 'DELETE'){
+    deleteUserByNickname(req, res, nickname);
+  }
+  else{
+    res.writeHead(400, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Unknown Request" }));
+  }
+}
 
 const PORT = process.env.PORT || 3010;
 
