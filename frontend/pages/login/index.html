@@ -44,6 +44,7 @@
               <div class="actual-form">
                 <div class="input-wrap">
                   <input
+                    id="input-wrap-text"
                     type="text"
                     minlength="4"
                     class="input-field"
@@ -55,6 +56,7 @@
 
                 <div class="input-wrap">
                   <input
+                    id="input-wrap-password"
                     type="password"
                     minlength="4"
                     class="input-field"
@@ -64,7 +66,13 @@
                   <label>Password</label>
                 </div>
 
-                <input type="submit" value="Sign In" class="sign-btn" />
+                <input
+                  type="submit"
+                  value="Sign In"
+                  class="sign-btn"
+                  id="sign-btn"
+                  href="/frontend/pages/landing/"
+                />
 
                 <p class="text">
                   Forgotten your password or you login details?
@@ -73,9 +81,8 @@
               </div>
             </form>
 
-
-              <!---------- Sign up ---------->
-             <form action="index.html" autocomplete="off" class="sign-up-form">
+            <!---------- Sign up ---------->
+            <form action="index.html" autocomplete="off" class="sign-up-form">
               <div class="logo">
                 <img src="../../resources/images/logo.png" alt="serP-logo" />
 
@@ -91,6 +98,7 @@
               <div class="actual-form">
                 <div class="input-wrap">
                   <input
+                    id="input-wrap-text-up"
                     type="text"
                     minlength="4"
                     class="input-field"
@@ -102,6 +110,7 @@
 
                 <div class="input-wrap">
                   <input
+                    id="input-wrap-email-up"
                     type="email"
                     class="input-field"
                     autocomplete="off"
@@ -112,6 +121,7 @@
 
                 <div class="input-wrap">
                   <input
+                    id="input-wrap-password-up"
                     type="password"
                     minlength="4"
                     class="input-field"
@@ -121,7 +131,12 @@
                   <label>Password</label>
                 </div>
 
-                <input type="submit" value="Sign Up" class="sign-btn" />
+                <input
+                  type="submit"
+                  value="Sign Up"
+                  class="sign-up-btn"
+                  id="sign-up-btn"
+                />
 
                 <p class="text">
                   By signing up, I agree to the
@@ -129,16 +144,20 @@
                   <a href="#">Privacy Policy</a>
                 </p>
               </div>
+            </form>
           </div>
 
           <div class="carousel">
-
             <div class="images-wrapper">
-              <img src="../../resources/images/login-image.png" class="carousel-image" alt="login-backdrop"/>
+              <img
+                src="../../resources/images/login-image.png"
+                class="carousel-image"
+                alt="login-backdrop"
+              />
             </div>
 
             <div class="text-group">
-              <h2> Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+              <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
             </div>
           </div>
         </div>
