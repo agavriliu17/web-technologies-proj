@@ -4,7 +4,7 @@
         <description><![CDATA[The list of all available SerP services at the moment.]]></description>
         <link>http://github.com/dylang/node-rss</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 23 Jun 2022 16:24:02 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 23 Jun 2022 16:29:37 GMT</lastBuildDate>
         <author><![CDATA[SerP]]></author>
         <item>
             <title><![CDATA[Golf]]></title>
@@ -37,6 +37,14 @@
             <dc:creator><![CDATA[SerP]]></dc:creator>
             <description>Best massage</description>
             <price>60 EURO / 1 hr</price>
+        </item>
+        <item>
+            <title><![CDATA[Karting]]></title>
+            <description><![CDATA[Race other people with karts on a closed track. Time to have some fun!]]></description>
+            <guid isPermaLink="false">Karting</guid>
+            <dc:creator><![CDATA[SerP]]></dc:creator>
+            <description>Race other people with karts on a closed track. Time to have some fun!</description>
+            <price>20 EURO / 1 hr</price>
         </item>
     </channel>
 </rss>

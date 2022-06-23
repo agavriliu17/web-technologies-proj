@@ -93,8 +93,8 @@ async function updateOrder(req, res, id){
             );
         }
         const orderInfo = {
-            idUser : id_user || order.idUser,
-            idService : id_service || order.idService,
+            idUser : id_user || order.id_user,
+            idService : id_service || order.id_service,
             date: date || order.date,
             status: status || order.status
         };
