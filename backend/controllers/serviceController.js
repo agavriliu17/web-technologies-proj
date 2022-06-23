@@ -80,12 +80,12 @@ async function updateService(req, res, id){
         if (!service) {
             res.writeHead(404, { "Content-Type": "application/json" });
             res.end(JSON.stringify({ message: "Service Not Found" }));
-          } 
-          else if (service === "invalid format") {
+        } 
+        else if (service === "invalid format") {
             res.writeHead(400, { "Content-Type": "application/json" });
             res.end(JSON.stringify({ message: "Wrong Id Format" }));
-          } 
-          else {
+        } 
+        else {
             const body = await getPostData(req);
             const { name, description, price, region } = JSON.parse(body);
             const serviceInfo = {
@@ -103,7 +103,7 @@ async function updateService(req, res, id){
                 res.writeHead(200, { "Content-Type": "application/json" });
                 res.end(JSON.stringify(updatedService));
             }
-          }
+        }
     } catch (error) {
         console.log(error);
         res.writeHead(500, { "Content-Type": "application/json" });

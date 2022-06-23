@@ -26,7 +26,7 @@ function insertUser(user){
         const newUser = {id: uuidv4(), ...user}
         const client = getClient()
         client.connect()
-        client.query('INSERT INTO users VALUES ($1, $2, $3, $4, $5, $6)', [newUser.id, newUser.nickname, newUser.name, newUser.password, newUser.email, newUser.isAdmin], (err, res) => {
+        client.query('INSERT INTO users VALUES ($1, $2, $3, $4, $5, $6)', [newUser.id, newUser.nickname, newUser.name, newUser.password, newUser.email, newUser.role], (err, res) => {
             if(!err){
                 resolve(newUser)
                 console.log('Transaction successful!')
@@ -110,8 +110,8 @@ function updateUser(user, id){
     return new Promise((resolve, reject) => {
         const client = getClient();
         client.connect();
-        client.query("UPDATE users SET nickname = $1, name = $2, password = $3, email = $4, isAdmin = $5 WHERE id = $6", 
-            [user.nickname, user.name, user.password, user.email, user.isAdmin, id],
+        client.query("UPDATE users SET nickname = $1, name = $2, password = $3, email = $4, role = $5 WHERE id = $6", 
+            [user.nickname, user.name, user.password, user.email, user.role, id],
             (err, res) =>{
                 if(!err){
                     console.log('Transaction successful!');

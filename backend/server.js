@@ -25,6 +25,9 @@ const {
 const {
   getOrders, 
   addOrder,
+  getOrderById,
+  updateOrder,
+  deleteOrder,
 } = require("./controllers/ordersController")
 
 const server = http.createServer((req, res) => {
@@ -95,6 +98,7 @@ const server = http.createServer((req, res) => {
     const id = info.split("=")[1];
     updateService(req, res, id);
   }
+  //Delete service by id, path: /api/v1/services/id={id}
   else if(req.url.match(ROUTES.findServiceById) && req.method == 'DELETE'){
     const info = req.url.split("/")[4];
     const id = info.split("=")[1];
@@ -108,6 +112,24 @@ const server = http.createServer((req, res) => {
   //Add new order, path: /api/v1/add-order
   else if(req.url === ROUTES.addOrder && req.method == 'POST'){
     addOrder(req, res);
+  }
+  //Get order by id, path: /api/v1/orders/id={id}
+  else if(req.url.match(ROUTES.getOrderById) && req.method == 'GET'){
+    const info = req.url.split("/")[4];
+    const id = info.split("=")[1];
+    getOrderById(req, res, id);
+  }
+  //Update order by id, path: /api/v1/orders/id={id}
+  else if(req.url.match(ROUTES.getOrderById) && req.method == 'PUT'){
+    const info = req.url.split("/")[4];
+    const id = info.split("=")[1];
+    updateOrder(req, res, id);
+  }
+  //Delete order by id, path: /api/v1/orders/id={id}
+  else if(req.url.match(ROUTES.getOrderById) && req.method == 'DELETE'){
+    const info = req.url.split("/")[4];
+    const id = info.split("=")[1];
+    deleteOrder(req, res, id);
   }
   else {
     res.writeHead(400, { "Content-Type": "application/json" });

@@ -12,6 +12,7 @@ const ROUTES = {
   findServicesByName: /\/api\/v1\/services\/name=([a-zA-Z0-9_!\s.\(\)]+$)/,
   getOrders: '/api/v1/orders',
   addOrder: '/api/v1/add-order',
+  getOrderById: /\/api\/v1\/orders\/id=([0-9a-f\-]+$)/,
 };
 
 module.exports = {

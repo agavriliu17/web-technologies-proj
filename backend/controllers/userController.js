@@ -110,16 +110,16 @@ async function getUserByEmail(req, res, email) {
 async function registerUser(req, res) {
   try {
     const body = await getPostData(req);
-    let { name, nickname, password, email, isAdmin } = JSON.parse(body);
-    if(typeof isAdmin === 'undefined'){
-      isAdmin = false;
+    let { name, nickname, password, email, role } = JSON.parse(body);
+    if(typeof role === 'undefined'){
+      role = 'client'; //default user role
     }
     const user = {
       name,
       nickname,
       password,
       email,
-      isAdmin
+      role
     };
 
     const saltRounds = 10;
@@ -302,9 +302,9 @@ async function deleteUserByEmail(req, res, email){
 //Update information for user
 async function performUpdate(req, res, user){
   const body = await getPostData(req);
-  let { name, nickname, password, email, isAdmin } = JSON.parse(body);
-  if(typeof isAdmin === 'undefined'){
-    isAdmin = false;
+  let { name, nickname, password, email, role } = JSON.parse(body);
+  if(typeof role === 'undefined'){
+    role = 'client'; //Default role
   }
 
   const saltRounds = 10;
@@ -315,7 +315,7 @@ async function performUpdate(req, res, user){
     nickname: nickname || user.nickname,
     password: encryptedPassword || user.password,
     email: email || user.email,
-    isAdmin: isAdmin || user.isAdmin
+    role: role || user.role
   };
 
   const updatedUser = await User.updateUser(userInfo, user.id);
