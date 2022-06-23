@@ -8,21 +8,22 @@ Table "users" :
 
 	CREATE TABLE IF NOT EXISTS public.users
 	(
-	    id uuid NOT NULL,
-	    nickname character varying COLLATE pg_catalog."default",
-	    name character varying COLLATE pg_catalog."default",
-	    password character varying COLLATE pg_catalog."default",
-	    email character varying COLLATE pg_catalog."default",
-		"isAdmin" boolean DEFAULT false,
-	    CONSTRAINT users_pkey PRIMARY KEY (id),
-	    CONSTRAINT "uniqueEmail" UNIQUE (email),
-	    CONSTRAINT "uniqueNickname" UNIQUE (nickname)
+		id uuid NOT NULL,
+		nickname character varying COLLATE pg_catalog."default",
+		name character varying COLLATE pg_catalog."default",
+		password character varying COLLATE pg_catalog."default",
+		email character varying COLLATE pg_catalog."default",
+		role character varying COLLATE pg_catalog."default" DEFAULT 'client'::character varying,
+		CONSTRAINT users_pkey PRIMARY KEY (id),
+		CONSTRAINT "uniqueEmail" UNIQUE (email)
+			DEFERRABLE,
+		CONSTRAINT "uniqueNickname" UNIQUE (nickname)
 	)
 
 	TABLESPACE pg_default;
 
 	ALTER TABLE IF EXISTS public.users
-	    OWNER to developer;
+		OWNER to developer;
 
 
 Table "services":
@@ -50,6 +51,7 @@ Table "orders":
 		id_user uuid,
 		id_service uuid,
 		date date,
+		status character varying COLLATE pg_catalog."default",
 		CONSTRAINT "Order ID" PRIMARY KEY (id),
 		CONSTRAINT "Service ID" FOREIGN KEY (id_service)
 			REFERENCES public.services (id) MATCH SIMPLE
