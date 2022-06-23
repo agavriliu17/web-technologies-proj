@@ -133,7 +133,6 @@ aside {
 }
 
 aside .top {
-  background: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -143,11 +142,11 @@ aside .top {
 aside .logo {
   display: flex;
   gap: 0.8rem;
+  align-items: center;
 }
 
 aside .logo img {
-  width: 2rem;
-  height: 2rem;
+  height: 40px;
 }
 
 aside .close {
@@ -477,6 +476,7 @@ main .recent-orders a {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .right .sales-analytics .add-product div {
