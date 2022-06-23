@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Our Services]]></title>
+        <description><![CDATA[The list of all available SerP services at the moment.]]></description>
+        <link>http://github.com/dylang/node-rss</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Thu, 23 Jun 2022 16:24:02 GMT</lastBuildDate>
+        <author><![CDATA[SerP]]></author>
+        <item>
+            <title><![CDATA[Golf]]></title>
+            <description><![CDATA[Play some golf]]></description>
+            <guid isPermaLink="false">Golf</guid>
+            <dc:creator><![CDATA[SerP]]></dc:creator>
+            <description>Play some golf</description>
+            <price>200 EURO / 1 hr</price>
+        </item>
+        <item>
+            <title><![CDATA[Mini Golf]]></title>
+            <description><![CDATA[Play some mini golf]]></description>
+            <guid isPermaLink="false">Mini Golf</guid>
+            <dc:creator><![CDATA[SerP]]></dc:creator>
+            <description>Play some mini golf</description>
+            <price>80 EURO / 1 hr</price>
+        </item>
+        <item>
+            <title><![CDATA[Private Car]]></title>
+            <description><![CDATA[A nice car]]></description>
+            <guid isPermaLink="false">Private Car</guid>
+            <dc:creator><![CDATA[SerP]]></dc:creator>
+            <description>A nice car</description>
+            <price>300 EURO / 1 day</price>
+        </item>
+        <item>
+            <title><![CDATA[Massage]]></title>
+            <description><![CDATA[Best massage]]></description>
+            <guid isPermaLink="false">Massage</guid>
+            <dc:creator><![CDATA[SerP]]></dc:creator>
+            <description>Best massage</description>
+            <price>60 EURO / 1 hr</price>
+        </item>
+    </channel>
+</rss>

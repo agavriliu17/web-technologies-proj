@@ -28,7 +28,8 @@ const {
   getOrderById,
   updateOrder,
   deleteOrder,
-} = require("./controllers/ordersController")
+} = require("./controllers/ordersController");
+const { buildRss } = require("./RSSFeed/rssApp")
 
 const server = http.createServer((req, res) => {
   if (req.url === ROUTES.welcome) {
@@ -130,6 +131,9 @@ const server = http.createServer((req, res) => {
     const info = req.url.split("/")[4];
     const id = info.split("=")[1];
     deleteOrder(req, res, id);
+  }
+  else if(req.url === ROUTES.getRSS){
+    buildRss(res);
   }
   else {
     res.writeHead(400, { "Content-Type": "application/json" });
