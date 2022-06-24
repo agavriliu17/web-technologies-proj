@@ -14,6 +14,7 @@ const ROUTES = {
   addOrder: '/api/v1/add-order',
   getOrderById: /\/api\/v1\/orders\/id=([0-9a-f\-]+$)/,
   getRSS: '/api/v1/services/rss',
+  getUsersOrders: /\/api\/v1\/orders\/user=([0-9a-f\-]+$)/,
 };
 
 const HEADERS = {
@@ -23,7 +24,10 @@ const HEADERS = {
   "Content-Type": "application/json"
 }
 
+const SERVICE_IMAGE_DEFAULT = '../../../resources/images/services/service.jpg';
+
 module.exports = {
   ROUTES,
-  HEADERS
+  HEADERS,
+  SERVICE_IMAGE_DEFAULT
 };

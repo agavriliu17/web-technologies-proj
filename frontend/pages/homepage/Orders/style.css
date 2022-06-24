@@ -43,6 +43,10 @@ a {
   background-color: var(--backgroundColor);
   display: flex;
   flex-direction: column;
+  background-image: url("../../../resources/images/home-wave.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .container {
@@ -50,10 +54,9 @@ a {
   max-width: 80rem;
   width: 100%;
   margin: 0 auto;
-  padding: 0 3 rem;
+  padding: 3 rem;
   z-index: 10;
 }
-
 /* --------- Navbar Styling --------- */
 header {
   position: fixed;
@@ -117,250 +120,51 @@ header .container {
   color: var(--hoverColor);
 }
 
-/*---------Search-bar---------*/
-.search-bar {
-  position: relative;
-  width: var(--searchBarHeight);
-  height: var(--searchBarHeight);
-  background-color: #fff;
-  border-radius: var(--searchBarHeight);
-  transition: 0.5s;
-  box-shadow: 0 0 0 1px #d4dadd;
-  overflow: hidden;
+.main-content{
+  margin-top: 6rem;
+  min-height: 30rem;
 }
 
-.search-bar .search-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: var(--searchBarHeight);
-  height: var(--searchBarHeight);
-  background-color: #fff;
-  border-radius: var(--searchBarHeight);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 20;
-  color: var(--lightTwo);
-  transition: 0.3s;
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
+.info{
+  padding: 0 10vw;
 }
 
-.search-bar:hover .search-icon {
-  color: var(--hoverColor);
-  transform: scale(1.1);
-}
-
-.search-bar.active {
-  width: 40vw;
-}
-
-.search-field {
-  position: relative;
-  width: 30vw;
-  height: var(--searchBarHeight);
-  left: var(--searchBarHeight);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.search-field input {
-  position: absolute;
-  top: 0;
+.styled-table{
   width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-  font-size: 1.2rem;
-  padding: 5px 0;
-}
-/*---------Search-bar End---------*/
-
-/*---------Item-list---------*/
-.content-control {
-  margin: 3rem 0rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.8rem 0;
-  padding-left: 10vw;
-  padding-right: 10vw;
-  border-radius: 5px;
-}
-
-.view-btn {
-  border: none;
-  font-size: 1.7rem;
-  display: inline-block;
-  vertical-align: top;
-  margin: 0 8px;
-  background-color: transparent;
-  cursor: pointer;
-  color: var(--lightOne);
-  transition: all 0.2s;
-}
-
-.view-btn:hover {
-  color: var(--hoverColor);
-  transform: translateY(-2px);
-}
-
-.active-btn {
-  color: var(--accentColor);
-}
-
-.item-list {
-  margin: 0;
-  margin-bottom: 3rem;
-  display: grid;
-  padding-left: 10vw;
-  padding-right: 10vw;
-  grid-template-columns: repeat(1, 1fr);
-  grid-row-gap: 7rem;
-}
-
-.item {
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 0 4px 0 var(--lightTwo);
-  transition: all 0.2s ease-out;
+  margin: 25px 0;
+  font-size: 1.1em;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  padding: 1.2em;
+  border-radius: 15px;
   background-color: var(--backgroundColor);
 }
 
-.item:hover {
-  box-shadow: 0 0 10px 1px var(--darkTwo);
+.styled-table thead tr {
+    color: var(--darkOne);
+    font-size: 1.3em;
+
 }
 
-.item-img {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.item-img img {
-  max-height: 14rem;
-  width: calc(100% + 2px);
-  height: 100%;
-  object-fit: cover;
-  transition: filter 0.6s;
-}
-
-.item-img:hover img {
-  filter: brightness(60%);
-}
-
-.icon-list {
-  position: absolute;
-  bottom: -7rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease-out;
-}
-
-.icon-list button {
-  border: none;
-  background-color: var(--darkOne);
-  color: #fff;
-  margin: 0 6px;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
+.styled-table tr:hover{
   cursor: pointer;
-  transition: all 0.3s ease-out;
 }
 
-.icon-list button:hover {
-  background-color: var(--accentColor);
+.styled-table tbody tr:hover{
+  color: var(--darkTwo);
 }
 
-.item-img:hover .icon-list {
-  bottom: 0.5rem;
+.styled-table th,
+.styled-table td {
+    padding: 0.4em 0.5em;
+    height: 2.4rem;
+    transition: all 0.3s ease;
 }
 
-.item-detail {
-  padding: 0.3rem;
-  color: var(--darkOne);
-  text-align: center;
+.styled-table tbody{
+  color: var(--lightOne);
 }
-
-.item-name {
-  text-decoration: none;
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: var(--accentColor);
-  display: block;
-}
-
-.item-price {
-  margin: 0.2rem 0;
-  font-weight: 300;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.old-price {
-  text-decoration: line-through;
-  text-decoration-thickness: 0.15rem;
-  opacity: 0.6;
-  font-size: 1.2rem;
-}
-
-.new-price {
-  color: var(--mainColor);
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-right: 0.4rem;
-}
-
-.item-detail p {
-  font-weight: 400;
-  font-size: 1.1rem;
-  color: var(--darkOne);
-  line-height: 1.4;
-}
-
-.add-btn {
-  margin: 1rem 0;
-  text-transform: uppercase;
-  border: none;
-  background-color: var(--darkOne);
-  color: #fff;
-  font-size: 1rem;
-  padding: 1rem 1.4rem;
-  letter-spacing: 0.3rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s ease-out;
-}
-
-.add-btn:hover {
-  background-color: var(--accentColor);
-}
-
-.main-wrapper {
-  background-image: url("../../resources/images/home-wave.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.navbar {
-  padding-left: 10vw;
-  padding-right: 10vw;
-}
-/*---------Item-list End---------*/
 
 /*---------Burger-Menu---------*/
 .hamburger-menu {
@@ -418,7 +222,7 @@ header .container {
 
 /*---------Footer---------*/
 .footer {
-  margin-top: 8rem;
+  margin-top: 4rem;
   padding-top: 2rem;
   padding-bottom: 2em;
 }
@@ -485,7 +289,7 @@ header .container {
 }
 /*---------Footer End---------*/
 
-/*---------Media querry---------*/
+/*Media Querry*/
 @media screen and (max-width: 780px) {
   #show-grid {
     display: none;

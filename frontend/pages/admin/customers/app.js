@@ -61,6 +61,7 @@ function generateTable(users, tableId){
     const detailsColumn = document.createElement('td');
     const details = document.createTextNode('Details');
     detailsColumn.classList.add('primary');
+    detailsColumn.setAttribute('id', user.id);
     detailsColumn.appendChild(details);
     row.appendChild(detailsColumn);
 

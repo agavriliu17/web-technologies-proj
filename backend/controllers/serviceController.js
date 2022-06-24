@@ -1,6 +1,6 @@
 const Service = require("../models/serviceModel");
 const { getPostData } = require("../utils");
-const { HEADERS } = require("../resources/constants");
+const { HEADERS, SERVICE_IMAGE_DEFAULT } = require("../resources/constants");
 
 async function getServices(req, res){
     try {
@@ -17,12 +17,16 @@ async function getServices(req, res){
 async function addService(req, res){
     try {
         const body = await getPostData(req);
-        const { name, description, price, region } = JSON.parse(body);
+        let { name, description, price, region, image } = JSON.parse(body);
+        if(typeof image === 'undefined'){
+            image = SERVICE_IMAGE_DEFAULT;
+        }
         const service = {
             name,
             description,
             price,
-            region
+            region,
+            image
         };
         const newService = await Service.insertService(service);
         if (newService === null) {
@@ -88,12 +92,13 @@ async function updateService(req, res, id){
         } 
         else {
             const body = await getPostData(req);
-            const { name, description, price, region } = JSON.parse(body);
+            const { name, description, price, region, image } = JSON.parse(body);
             const serviceInfo = {
                 name: name || service.name,
                 description: description || service.description,
                 price: price || service.price,
-                region: region || service.region
+                region: region || service.region,
+                image: image || service.image
             };
             const updatedService = await Service.updateService(serviceInfo, service.id);
             if(updatedService === null){

@@ -25,8 +25,8 @@ function insertService(service){
         const newService = { id: uuidv4(), ...service };
         const client = getClient();
         client.connect();
-        client.query('INSERT INTO services VALUES ($1, $2, $3, $4, $5)', [newService.id, newService.name, 
-            newService.description, newService.price, newService.region], (err, result) => {
+        client.query('INSERT INTO services VALUES ($1, $2, $3, $4, $5, $6)', [newService.id, newService.name, 
+            newService.description, newService.price, newService.region, newService.image], (err, result) => {
                 if(!err){
                     resolve(newService);
                     console.log('Transaction successful!');
@@ -88,8 +88,8 @@ function updateService(service, id){
     return new Promise((resolve, reject) => {
         const client = getClient();
         client.connect();
-        client.query('UPDATE services SET name = $1, description = $2, price = $3, region = $4 WHERE id = $5', 
-            [service.name, service.description, service.price, service.region, id], (err, res) => {
+        client.query('UPDATE services SET name = $1, description = $2, price = $3, region = $4, image = $5 WHERE id = $6', 
+            [service.name, service.description, service.price, service.region, service.image, id], (err, res) => {
                 if(!err){
                     console.log('Transaction successful!');
                     resolve(service);

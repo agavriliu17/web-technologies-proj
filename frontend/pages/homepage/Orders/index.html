@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../../resources/images/favicon/favicon-16x16.png"
+    />
+    <title>My Orders</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/24616378df.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <!---------- Navbar ---------->
+      <header>
+        <nav class="container">
+          <div class="logo">
+            <img src="../../../resources/images/logo.png" />
+            <h3>SerP</h3>
+          </div>
+
+          <div class="sections-buttons">
+            <ul>
+              <li id="about-us"><a href="#" class="nav-link" onclick="redirectToServices();">Services</a></li>
+              <li><a href="#" class="nav-link">Log Out</a></li>
+            </ul>
+          </div>
+          <div class="hamburger-menu">
+              <div class="bar"></div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="container info">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="content-list">
+              <!-- Content Fetches here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Main Content End-->
+
+      <!-- Footer -->
+      <footer class="footer" id="footer">
+        <div class="footer-container">
+          <div class="footer-row">
+            <div class="footer-col">
+              <h4>SerP</h4>
+              <ul>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Our Services</a></li>
+                <li><a href="#">Join Us</a></li>
+                <li><a href="#">Support</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Contact Us</h4>
+              <ul>
+                <li><a href="#">support@serp.com</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li>
+                  <p>Address: 928 Shadow Brook St.Chapel Hill, NC 27516</p>
+                </li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Share</h4>
+              <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">WhatsApp</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer End -->
+    </div>
+
+    <!-- JavaScript Files -->
+
+    <script src="./app.js"></script>
+  </body>
+</html>

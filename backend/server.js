@@ -28,6 +28,7 @@ const {
   getOrderById,
   updateOrder,
   deleteOrder,
+  getOrdersForUser,
 } = require("./controllers/ordersController");
 const { buildRss } = require("./RSSFeed/rssApp")
 
@@ -120,6 +121,12 @@ const server = http.createServer((req, res) => {
     const id = info.split("=")[1];
     getOrderById(req, res, id);
   }
+  //Get orders made by a specific user, path: /api/v1/orders/user={id}
+  else if(req.url.match(ROUTES.getUsersOrders) && req.method == 'GET'){
+    const info = req.url.split("/")[4];
+    const id = info.split("=")[1];
+    getOrdersForUser(req, res, id);
+  }
   //Update order by id, path: /api/v1/orders/id={id}
   else if(req.url.match(ROUTES.getOrderById) && req.method == 'PUT'){
     const info = req.url.split("/")[4];
@@ -132,10 +139,12 @@ const server = http.createServer((req, res) => {
     const id = info.split("=")[1];
     deleteOrder(req, res, id);
   }
+  //Get RSS feed of all available services
   else if(req.url === ROUTES.getRSS){
     buildRss(res);
   }
-  else if(req.method == 'OPTIONS'){
+  //CORS
+  else if(req.method === 'OPTIONS'){
     res.writeHead(200, HEADERS);
     res.end();
   }

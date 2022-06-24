@@ -144,6 +144,25 @@ async function deleteOrder(req, res, id){
     }
 }
 
+async function getOrdersForUser(req, res, id){
+    const user = await findUserById(id);
+    if(!user){
+        res.writeHead(400, HEADERS);
+        return res.end(JSON.stringify({ message: "User with the specified id not found!" }));
+    }
+    if(user === 'invalid format'){
+        res.writeHead(400, HEADERS);
+        return res.end(JSON.stringify({ message: "Wrong id format" }));
+    }
+    const info = await Order.findOrdersForUser(id);
+    if(info === null){
+        res.writeHead(400, HEADERS);
+        return res.end(JSON.stringify({ message: "Something went wrong!" }));
+    }
+    res.writeHead(200, HEADERS);
+    return res.end(JSON.stringify(info));
+}
+
 //Verify if user and service with the ids provided exist
 async function verifyUserAndService(idUser, idService){
     const userExists = await findUserById(idUser);
@@ -163,4 +182,5 @@ module.exports = {
     getOrderById,
     updateOrder,
     deleteOrder,
+    getOrdersForUser
 }
