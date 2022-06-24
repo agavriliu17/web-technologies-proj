@@ -45,7 +45,9 @@ const getDataFromInputSignUp = function () {
     let emailSignUpValue = emailSignUp.value;
     let passwordSignUpValue = passwordSignUp.value;
 
-    console.log(nameSignUpValue, emailSignUpValue, passwordSignUpValue);
+    // console.log(nameSignUpValue, emailSignUpValue, passwordSignUpValue);
+    registerUser();
+    main.classList.toggle("sign-up-mode");
   });
 };
 
@@ -75,3 +77,28 @@ const redirectPage = function () {
 };
 
 // redirectPage();
+
+function registerUser(){
+  const name = document.getElementById('input-wrap-text-up').value;
+  const nickname = document.getElementById('input-wrap-nickname-up').value;
+  const email = document.getElementById('input-wrap-email-up').value;
+  const password = document.getElementById('input-wrap-password-up').value;
+  const body = {
+    name,
+    nickname,
+    email,
+    password,
+    role : "client"
+  }
+  const registerURL = "http://localhost:3010/api/v1/register";
+  fetch(registerURL, {
+    method : 'POST',
+    headers : {
+      "Content-Type": "application/json",
+    },
+    body : JSON.stringify(body),
+  })
+    .then((res) => {
+      console.log(res.json());
+    });
+}

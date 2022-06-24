@@ -468,7 +468,8 @@ main .all-customers a {
 
 .change-client input{
   font-size: 1.5em;
-  font-style: italic;
+  border: none;
+  background: transparent;
   color: var(--color-primary);
 }
 
@@ -493,6 +494,7 @@ main .all-customers a {
   color: var(--color-dark);
   font-size: 1.4em;
   transition: all 300ms ease;
+  border-radius: 8px;
 }
 
 .detail-btns button:hover{
