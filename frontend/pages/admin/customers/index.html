@@ -61,13 +61,9 @@
             <span class="material-symbols-sharp"> room_service </span>
             <h3>Services</h3>
           </a>
-          <a href="#" >
+          <a href="#">
             <span class="material-symbols-sharp"> insights </span>
             <h3>Analytics</h3>
-          </a>
-          <a href="#">
-            <span class="material-symbols-sharp"> settings </span>
-            <h3>Settings</h3>
           </a>
           <a href="#" id="open-modal">
             <span class="material-symbols-sharp"> add </span>
@@ -106,37 +102,37 @@
           </div>
         </div>
         <div class="all-customers">
-					<h2>All Customers</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Customer nickname</th>
-								<th>Customer name</th>
-								<th>Customer email</th>
-								<th>Customer role</th>
-								<th></th>
-							</tr>
-						</thead>
+          <h2>All Customers</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Customer nickname</th>
+                <th>Customer name</th>
+                <th>Customer email</th>
+                <th>Customer role</th>
+                <th></th>
+              </tr>
+            </thead>
 
-						<tbody id="content-table">
-							<!-- Content will be fetched here -->
-						</tbody>
-					</table>
+            <tbody id="content-table">
+              <!-- Content will be fetched here -->
+            </tbody>
+          </table>
         </div>
         <div id="overlay">
           <div class="overlay-container">
             <div class="client-details">
               <div class="client-info">
                 <span class="info-row">
-                  <h3 class="info-label">Name: </h3>
+                  <h3 class="info-label">Name:</h3>
                   <h3 class="info-value" id="info-name"></h3>
                 </span>
                 <span class="info-row">
-                  <h3 class="info-label">Nickname: </h3>
+                  <h3 class="info-label">Nickname:</h3>
                   <h3 class="info-value" id="info-nickname"></h3>
                 </span>
                 <span class="info-row">
-                  <h3 class="info-label">Email: </h3>
+                  <h3 class="info-label">Email:</h3>
                   <h3 class="info-value" id="info-email"></h3>
                 </span>
               </div>
@@ -145,19 +141,47 @@
                   <table>
                     <tr>
                       <td class="table-lable">New Name:</td>
-                      <td><input id="new-name" type="text" name="name" placeholder="type here..."></td>
+                      <td>
+                        <input
+                          id="new-name"
+                          type="text"
+                          name="name"
+                          placeholder="type here..."
+                        />
+                      </td>
                     </tr>
                     <tr>
                       <td class="table-lable">New Nickname:</td>
-                      <td><input id="new-nickname" type="text" name="nickname" placeholder="type here..."></td>
+                      <td>
+                        <input
+                          id="new-nickname"
+                          type="text"
+                          name="nickname"
+                          placeholder="type here..."
+                        />
+                      </td>
                     </tr>
                     <tr>
                       <td class="table-lable">New Password:</td>
-                      <td><input id="new-pass" type="password" name="pass" placeholder="type here..."></td>
+                      <td>
+                        <input
+                          id="new-pass"
+                          type="password"
+                          name="pass"
+                          placeholder="type here..."
+                        />
+                      </td>
                     </tr>
                     <tr>
                       <td class="table-lable">New Mail:</td>
-                      <td><input id="new-email" type="text" name="email" placeholder="type here..."></td>
+                      <td>
+                        <input
+                          id="new-email"
+                          type="text"
+                          name="email"
+                          placeholder="type here..."
+                        />
+                      </td>
                     </tr>
                   </table>
                 </div>
@@ -169,7 +193,9 @@
                     <button onclick="performDelete()">Delete</button>
                     <button onclick="performUpdate()">Update</button>
                   </div>
-                  <button class="close-btn" onclick="hideOverlay()">Close</button>
+                  <button class="close-btn" onclick="hideOverlay()">
+                    Close
+                  </button>
                 </div>
               </div>
             </div>
