@@ -48,9 +48,23 @@ const server = http.createServer((req, res) => {
     registerUser(req, res);
   }
 
-  //Login user
+  //Login user, path: /api/v1/users/register
   else if (req.url === ROUTES.loginUser && req.method === "POST") {
     loginUser(req, res);
+  }
+  
+  //Update user by id with POST request to bypass CORS error, path: /api/v1/users/update-id={id}
+  else if(req.url.match(ROUTES.updateUserPOST) && req.method === "POST"){
+    const info = req.url.split("/")[4];
+    const id = info.split("=")[1];
+    updateUserById(req, res, id);
+  }
+
+  //Delete user by id with GET request to bypass CORS error, path: /api/v1/users/delete-id={id}
+  else if(req.url.match(ROUTES.deleteUserGET) && req.method === "GET"){
+    const info = req.url.split("/")[4];
+    const id = info.split("=")[1];
+    deleteUserById(req, res, id);
   }
 
   //Process user by id, path: /api/v1/users/id={id}

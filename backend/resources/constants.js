@@ -15,12 +15,15 @@ const ROUTES = {
   getOrderById: /\/api\/v1\/orders\/id=([0-9a-f\-]+$)/,
   getRSS: '/api/v1/services/rss',
   getUsersOrders: /\/api\/v1\/orders\/user=([0-9a-f\-]+$)/,
+  updateUserPOST: /\/api\/v1\/users\/update-id=([0-9a-f\-]+$)/,
+  deleteUserGET: /\/api\/v1\/users\/delete-id=([0-9a-f\-]+$)/,
 };
 
 const HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST, GET, DELETE, PUT",
-  "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept", 
+  "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Credentials",
+  "Access-Control-Allow-Credentials": "true", 
   "Content-Type": "application/json"
 };
 

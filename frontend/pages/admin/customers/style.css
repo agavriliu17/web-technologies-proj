@@ -427,9 +427,90 @@ main .all-customers a {
   border-radius: 8px;
   box-shadow: var(--box-shadow);
   z-index: 9;
+  transition: all 300ms ease;
 }
 .overlay-container{
-  width: 50vw;
-  padding: 3em;
+  min-width: 50vw;
+  padding: 2em;
   background-color: var(--color-background);
+  display: flex;
+  justify-content: center;
+}
+.client-info{
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid var(--color-primary);
+  display: block;
+}
+.info-row{
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+.info-row .info-label{
+  font-size: 1.3em;
+}
+.info-row .info-value{
+  color: var(--color-primary);
+  margin-left: 0.5em;
+  font-size: 1.3em;
+}
+
+.change-client{
+  margin-top: 1em;
+}
+
+.new-data{
+  display: flex;
+  justify-content: center;
+}
+
+.change-client input{
+  font-size: 1.5em;
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+.detail-btns{
+  margin-top: 0.5em;
+  display: flex;
+  justify-content: center;
+}
+.detail-btns .close-btn{
+  margin-left: 14em;
+}
+.db-btns{
+  margin-left: 3em;
+}
+.db-btns button:last-child{
+  margin-left: 1em;
+}
+
+.detail-btns button{
+  background-color: transparent;
+  padding: 0.8em 1.6em;
+  color: var(--color-dark);
+  font-size: 1.4em;
+  transition: all 300ms ease;
+}
+
+.detail-btns button:hover{
+  background-color: var(--color-light);
+  color: var(--color-primary);
+}
+
+.table-lable{
+  text-align: right;
+  padding-right: 0.6em;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.request-status{
+  display: none;
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 0.4em;
+  font-weight: 500;
 }

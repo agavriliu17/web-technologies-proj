@@ -127,21 +127,50 @@
           <div class="overlay-container">
             <div class="client-details">
               <div class="client-info">
-                <h3>Name: Bruce Wayne</h3>
-                <h3>Nickname: Batman</h3>
-                <h3>Email: b.wayne@wayne.gotham</h3>
+                <span class="info-row">
+                  <h3 class="info-label">Name: </h3>
+                  <h3 class="info-value" id="info-name"></h3>
+                </span>
+                <span class="info-row">
+                  <h3 class="info-label">Nickname: </h3>
+                  <h3 class="info-value" id="info-nickname"></h3>
+                </span>
+                <span class="info-row">
+                  <h3 class="info-label">Email: </h3>
+                  <h3 class="info-value" id="info-email"></h3>
+                </span>
               </div>
               <div class="change-client">
                 <div class="new-data">
-                  <ul>
-                    <li><p>New Name:</p><textarea></textarea></li>
-                    <li><p>New Nickname:</p><textarea></textarea></li>
-                    <li><p>New Password:</p><textarea></textarea></li>
-                    <li><p>New Email:</p><textarea></textarea></li>
-                  </ul>
+                  <table>
+                    <tr>
+                      <td class="table-lable">New Name:</td>
+                      <td><input id="new-name" type="text" name="name" placeholder="type here..."></td>
+                    </tr>
+                    <tr>
+                      <td class="table-lable">New Nickname:</td>
+                      <td><input id="new-nickname" type="text" name="nickname" placeholder="type here..."></td>
+                    </tr>
+                    <tr>
+                      <td class="table-lable">New Password:</td>
+                      <td><input id="new-pass" type="password" name="pass" placeholder="type here..."></td>
+                    </tr>
+                    <tr>
+                      <td class="table-lable">New Mail:</td>
+                      <td><input id="new-email" type="text" name="email" placeholder="type here..."></td>
+                    </tr>
+                  </table>
                 </div>
-                <button>Delete</button>
-                <button>Update</button>
+                <div class="request-status">
+                  <p id="req-response"></p>
+                </div>
+                <div class="detail-btns">
+                  <div class="db-btns">
+                    <button onclick="performDelete()">Delete</button>
+                    <button onclick="performUpdate()">Update</button>
+                  </div>
+                  <button class="close-btn" onclick="hideOverlay()">Close</button>
+                </div>
               </div>
             </div>
           </div>

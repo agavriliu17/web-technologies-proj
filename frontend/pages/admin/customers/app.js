@@ -4,10 +4,65 @@ const closeBtn = document.querySelector("#close-btn");
 
 const apiURL = "http://localhost:3010/api/v1/users";
 const overlay = document.getElementById("overlay");
+var currentDisplayedUser = "";
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+}
 
 function displayOverlay(element){
   overlay.style.display = "block";
-  console.log(element.id);
+  currentDisplayedUser = element.id;
+  console.log(currentDisplayedUser);
+  const getUserURL = "http://localhost:3010/api/v1/users/id=" + currentDisplayedUser;
+  fetch(getUserURL)
+    .then((res) => res.json())
+    .then((data) => {
+      const infoName = document.getElementById("info-name").innerHTML = data.name;
+      const infoNickname = document.getElementById("info-nickname").innerHTML = data.nickname;
+      const infoEmail = document.getElementById("info-email").innerHTML = data.email;
+    });
+}
+
+function performUpdate(){
+  var newName = document.getElementById("new-name").value;
+  var newNickname = document.getElementById("new-nickname").value;
+  var newPassword = document.getElementById("new-pass").value;
+  var newEmail = document.getElementById("new-email").value;
+  const body = {
+    name : newName,
+    nickname : newNickname,
+    password : newPassword,
+    email : newEmail
+  };
+  console.log(body);
+  const getUserURL = "http://localhost:3010/api/v1/users/update-id=" + currentDisplayedUser;
+  fetch(getUserURL, {
+    method : 'POST',
+    headers : {
+      "Content-Type": "application/json",
+    },
+    body : JSON.stringify(body),
+  })
+    .then((res) => {
+      hideOverlay();
+    });
+}
+
+function performDelete(){
+  const getUserURL = "http://localhost:3010/api/v1/users/delete-id=" + currentDisplayedUser;
+  fetch(getUserURL)
+    .then((res) => {
+      hideOverlay();
+    });
+}
+
+function hideOverlay(){
+  overlay.style.display = "none";
+  currentDisplayedUser = "";
+  getAllUsers();
 }
 
 function formatRole(role, cell) {
@@ -42,6 +97,7 @@ function formatRole(role, cell) {
 
 function generateTable(users, tableId) {
   const table = document.getElementById(tableId);
+  removeAllChildNodes(table);
   for (user of users) {
     const row = document.createElement("tr");
 
@@ -63,10 +119,6 @@ function generateTable(users, tableId) {
     const roleColumn = document.createElement("td");
     formatRole(user.role, roleColumn);
     row.appendChild(roleColumn);
-
-
-    
-    
 
     const detailsColumn = document.createElement("td");
     const details = document.createTextNode("Details");
@@ -99,8 +151,6 @@ menuBtn.addEventListener("click", () => {
 closeBtn.addEventListener("click", () => {
   sideMenu.style.display = "none";
 });
-
-// overlay.addEventListener("click", displayOverlay);
 
 //modal actions
 const modal = document.querySelector("custom-modal");
