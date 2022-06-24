@@ -42,3 +42,11 @@ sidebar.forEach((option, index) => {
       window.location.href = SIDEBAR_ROUTES[index];
     });
 });
+
+//logout button
+const logoutButton = document.querySelector("#logout-btn");
+
+logoutButton.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  window.location.href = "/frontend/pages/login";
+});

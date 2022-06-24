@@ -23,12 +23,26 @@ toggleButtons.forEach((btn) => {
 const nameSignIn = document.getElementById("input-wrap-text");
 const passwordSignIn = document.getElementById("input-wrap-password");
 
-const getDataFromInputSignIn = function () {
-  submitSignIn.addEventListener("click", (ev) => {
+const getDataFromInputSignIn = async function () {
+  submitSignIn.addEventListener("click", async (ev) => {
     ev.preventDefault();
     const nameSignInValue = nameSignIn.value;
     const passwordSignInValue = passwordSignIn.value;
-    console.log(nameSignInValue, passwordSignInValue);
+
+    try {
+      const jwt = await fetch("http://localhost:3010/api/v1/login", {
+        method: "POST",
+        body: JSON.stringify({
+          password: passwordSignInValue,
+          email: nameSignInValue,
+        }),
+      }).then((res) => res.text());
+
+      localStorage.setItem("token", `Bearer ${JSON.parse(jwt)}`);
+      window.location.href = "/frontend/pages/homepage/Services/index.html";
+    } catch (e) {
+      console.log(e);
+    }
   });
 };
 
@@ -51,30 +65,28 @@ const getDataFromInputSignUp = function () {
   });
 };
 
-getDataFromInputSignUp();
+// const redirectPage = function () {
+//   submitSignIn.addEventListener("click", function (ev) {
+//     ev.preventDefault();
+//     if (nameSignIn.value !== "") {
+//       window.location.href = "/frontend/pages/homepage/";
+//     } else {
+//       window.alert("Name or password is empty! Please complete all fields.");
+//     }
+//     console.log(nameSignIn.value);
+//   });
 
-const redirectPage = function () {
-  submitSignIn.addEventListener("click", function (ev) {
-    ev.preventDefault();
-    if (nameSignIn.value !== "") {
-      window.location.href = "/frontend/pages/homepage/";
-    } else {
-      window.alert("Name or password is empty! Please complete all fields.");
-    }
-    console.log(nameSignIn.value);
-  });
-
-  submitSignUp.addEventListener("click", function (ev) {
-    ev.preventDefault();
-    if (nameSignUp.value !== "") {
-      window.location.href = "/frontend/pages/homepage/";
-    } else {
-      window.alert(
-        "Name, password or email is empty! Please complete all fields."
-      );
-    }
-  });
-};
+//   submitSignUp.addEventListener("click", function (ev) {
+//     ev.preventDefault();
+//     if (nameSignUp.value !== "") {
+//       window.location.href = "/frontend/pages/homepage/";
+//     } else {
+//       window.alert(
+//         "Name, password or email is empty! Please complete all fields."
+//       );
+//     }
+//   });
+// };
 
 // redirectPage();
 

@@ -43,6 +43,14 @@ sidebar.forEach((option, index) => {
     });
 });
 
+//logout button
+const logoutButton = document.querySelector("#logout-btn");
+
+logoutButton.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  window.location.href = "/frontend/pages/login";
+});
+
 const chart = document.querySelector("#chart-1").getContext("2d");
 
 const bgColor = {

@@ -8,58 +8,62 @@ var currentDisplayedUser = "";
 
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
+    parent.removeChild(parent.firstChild);
   }
 }
 
-function displayOverlay(element){
+function displayOverlay(element) {
   overlay.style.display = "block";
   currentDisplayedUser = element.id;
   console.log(currentDisplayedUser);
-  const getUserURL = "http://localhost:3010/api/v1/users/id=" + currentDisplayedUser;
+  const getUserURL =
+    "http://localhost:3010/api/v1/users/id=" + currentDisplayedUser;
   fetch(getUserURL)
     .then((res) => res.json())
     .then((data) => {
-      const infoName = document.getElementById("info-name").innerHTML = data.name;
-      const infoNickname = document.getElementById("info-nickname").innerHTML = data.nickname;
-      const infoEmail = document.getElementById("info-email").innerHTML = data.email;
+      const infoName = (document.getElementById("info-name").innerHTML =
+        data.name);
+      const infoNickname = (document.getElementById("info-nickname").innerHTML =
+        data.nickname);
+      const infoEmail = (document.getElementById("info-email").innerHTML =
+        data.email);
     });
 }
 
-function performUpdate(){
+function performUpdate() {
   var newName = document.getElementById("new-name").value;
   var newNickname = document.getElementById("new-nickname").value;
   var newPassword = document.getElementById("new-pass").value;
   var newEmail = document.getElementById("new-email").value;
   const body = {
-    name : newName,
-    nickname : newNickname,
-    password : newPassword,
-    email : newEmail
+    name: newName,
+    nickname: newNickname,
+    password: newPassword,
+    email: newEmail,
   };
   console.log(body);
-  const getUserURL = "http://localhost:3010/api/v1/users/update-id=" + currentDisplayedUser;
+  const getUserURL =
+    "http://localhost:3010/api/v1/users/update-id=" + currentDisplayedUser;
   fetch(getUserURL, {
-    method : 'POST',
-    headers : {
+    method: "POST",
+    headers: {
       "Content-Type": "application/json",
     },
-    body : JSON.stringify(body),
-  })
-    .then((res) => {
-      hideOverlay();
-    });
+    body: JSON.stringify(body),
+  }).then((res) => {
+    hideOverlay();
+  });
 }
 
-function performDelete(){
-  const getUserURL = "http://localhost:3010/api/v1/users/delete-id=" + currentDisplayedUser;
-  fetch(getUserURL)
-    .then((res) => {
-      hideOverlay();
-    });
+function performDelete() {
+  const getUserURL =
+    "http://localhost:3010/api/v1/users/delete-id=" + currentDisplayedUser;
+  fetch(getUserURL).then((res) => {
+    hideOverlay();
+  });
 }
 
-function hideOverlay(){
+function hideOverlay() {
   overlay.style.display = "none";
   currentDisplayedUser = "";
   getAllUsers();
@@ -123,7 +127,7 @@ function generateTable(users, tableId) {
     const detailsColumn = document.createElement("td");
     const details = document.createTextNode("Details");
     detailsColumn.classList.add("primary");
-    detailsColumn.classList.add("clickable-button");    
+    detailsColumn.classList.add("clickable-button");
     detailsColumn.setAttribute("onclick", "displayOverlay(this)");
     detailsColumn.setAttribute("id", user.id);
 
@@ -183,4 +187,12 @@ sidebar.forEach((option, index) => {
     option.addEventListener("click", () => {
       window.location.href = SIDEBAR_ROUTES[index];
     });
+});
+
+//logout button
+const logoutButton = document.querySelector("#logout-btn");
+
+logoutButton.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  window.location.href = "/frontend/pages/login";
 });
