@@ -16,6 +16,14 @@ const ROUTES = {
   getRSS: '/api/v1/services/rss',
 };
 
+const HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, GET, DELETE, PUT",
+  "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept", 
+  "Content-Type": "application/json"
+}
+
 module.exports = {
   ROUTES,
+  HEADERS
 };

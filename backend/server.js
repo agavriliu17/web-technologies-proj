@@ -1,4 +1,4 @@
-const { ROUTES } = require("./resources/constants");
+const { ROUTES, HEADERS } = require("./resources/constants");
 const http = require("http");
 const {
   getUsers,
@@ -33,7 +33,7 @@ const { buildRss } = require("./RSSFeed/rssApp")
 
 const server = http.createServer((req, res) => {
   if (req.url === ROUTES.welcome) {
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.writeHead(200, HEADERS);
     res.end(JSON.stringify({ message: "Welcome" }));
   }
 
@@ -135,8 +135,12 @@ const server = http.createServer((req, res) => {
   else if(req.url === ROUTES.getRSS){
     buildRss(res);
   }
+  else if(req.method == 'OPTIONS'){
+    res.writeHead(200, HEADERS);
+    res.end();
+  }
   else {
-    res.writeHead(400, { "Content-Type": "application/json" });
+    res.writeHead(400, HEADERS);
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }
 });
@@ -159,7 +163,7 @@ function processIdRequest(req, res, id){
     deleteUserById(req, res, id);
   }
   else{
-    res.writeHead(400, { "Content-Type": "application/json" });
+    res.writeHead(400, HEADERS);
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }
 }
@@ -175,7 +179,7 @@ function processEmailRequest(req, res, email){
     deleteUserByEmail(req, res, email);
   }
   else{
-    res.writeHead(400, { "Content-Type": "application/json" });
+    res.writeHead(400, HEADERS);
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }
 }
@@ -191,7 +195,7 @@ function processNicknameRequest(req, res, nickname){
     deleteUserByNickname(req, res, nickname);
   }
   else{
-    res.writeHead(400, { "Content-Type": "application/json" });
+    res.writeHead(400, HEADERS);
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }
 }

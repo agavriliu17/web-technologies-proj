@@ -4,7 +4,7 @@
         <description><![CDATA[The list of all available SerP services at the moment.]]></description>
         <link>http://github.com/dylang/node-rss</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 23 Jun 2022 16:29:37 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 24 Jun 2022 10:25:47 GMT</lastBuildDate>
         <author><![CDATA[SerP]]></author>
         <item>
             <title><![CDATA[Golf]]></title>

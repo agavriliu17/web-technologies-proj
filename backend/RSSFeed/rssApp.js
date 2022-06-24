@@ -40,12 +40,15 @@ async function buildRss(res){
     }
     const xml = feed.xml({indent : true});
     fs.writeFileSync('feed.xml', xml);
-    // const result = fs.readFileSync('feed.xml');
-    // return result;
     try {
         fs.readFile('feed.xml', function (err, data) {
             if (err) throw err;
-            res.writeHead(200, { 'Content-Type': 'text/xml' });
+            res.writeHead(200, {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "POST, GET, DELETE, PUT",
+                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+                'Content-Type': 'text/xml'
+            });
             res.end(data.toString());
         });
     } catch (error) {
