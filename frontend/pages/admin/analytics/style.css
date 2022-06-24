@@ -646,7 +646,7 @@ main .recent-orders a {
 }
 
 /* Chart */
-canvas #chart {
+canvas {
   background: var(--color-white);
   max-width: 100%;
   margin-top: 2rem;
@@ -777,6 +777,7 @@ canvas #chart {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .export {

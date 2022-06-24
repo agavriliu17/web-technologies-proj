@@ -43,7 +43,7 @@ sidebar.forEach((option, index) => {
     });
 });
 
-const chart = document.querySelector("#chart").getContext("2d");
+const chart = document.querySelector("#chart-1").getContext("2d");
 
 const bgColor = {
   id: "bgColor",
@@ -56,7 +56,7 @@ const bgColor = {
 };
 
 //create chart instance
-new Chart(chart, {
+const revenueChart = new Chart(chart, {
   type: "line",
   data: {
     labels: [
@@ -96,6 +96,35 @@ new Chart(chart, {
 });
 
 Chart.register(bgColor);
+
+// Generate pie chart
+
+const getOrdersByLocation = async () => {
+  const data = await fetch(
+    "http://localhost:3010/api/v1/stats/top-services-per-region"
+  ).then((res) => res.json());
+};
+
+const pieChart = document.querySelector("#chart-2").getContext("2d");
+
+const locationsChart = new Chart(pieChart, {
+  type: "pie",
+  data: {
+    labels: ["Red", "Blue", "Yellow"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [300, 50, 100],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+  },
+});
 
 // Selecting location
 const selectedAll = document.querySelectorAll(".selected");
@@ -155,7 +184,7 @@ selectedAll.forEach((selected) => {
 //exporting data as pdf
 
 const downloadPDF = () => {
-  const myChart = document.querySelector("#chart");
+  const myChart = document.querySelector("#chart-1");
   // create image
   const canvasImage = myChart.toDataURL("image/jpeg", 1.0);
 
