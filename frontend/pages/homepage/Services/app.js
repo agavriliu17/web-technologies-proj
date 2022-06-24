@@ -1,5 +1,6 @@
 var hamburgerMenu;
 var mainWrapper;
+var currentUser = "010b0f3d-9ffc-4a88-abc8-f686d1949646";
 
 const header = document.querySelector("header");
 const main = document.querySelector("main");
@@ -52,7 +53,28 @@ grid_btn.addEventListener("click", () => {
 events();
 
 function redirectToOrders(){
-  window.open('../Orders/index.html?user=010b0f3d-9ffc-4a88-abc8-f686d1949646', '_self');
+  window.open('../Orders/index.html?user=' + currentUser, '_self');
+}
+
+function processOrder(element){
+  body = {
+    id_user : currentUser,
+    id_service : element.id,
+    date : new Date(),
+    status : "pending"
+  }
+  console.log(body);
+  const newOrderURL = "http://localhost:3010/api/v1/add-order";
+  fetch(newOrderURL, {
+    method : 'POST',
+    headers : {
+      "Content-Type": "application/json",
+    },
+    body : JSON.stringify(body),
+  })
+    .then((res) => {
+      console.log(res.json());
+    });
 }
 
 //API Fetch
@@ -135,6 +157,7 @@ function generateList(services, listId){
     orderButton.classList.add('add-btn');
     orderButton.setAttribute('type', 'button');
     orderButton.setAttribute('id', service.id);
+    orderButton.setAttribute('onclick', 'processOrder(this);')
     itemDetail.appendChild(orderButton);
 
     item.appendChild(itemDetail);

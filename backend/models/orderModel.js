@@ -111,7 +111,7 @@ function findOrdersForUser(id){
         const client = getClient();
         client.connect();
         client.query(
-            'SELECT u.name, o.date::date, s.name as serviceName, o.status FROM users u INNER JOIN orders o ON o.id_user = u.id INNER JOIN services s ON o.id_service = s.id WHERE u.id = $1;',
+            'SELECT u.name, o.date::date, s.name as serviceName, o.status FROM users u INNER JOIN orders o ON o.id_user = u.id INNER JOIN services s ON o.id_service = s.id WHERE u.id = $1 ORDER BY o.date DESC;',
             [id],
             (err, res) =>{
                 if(!err){
