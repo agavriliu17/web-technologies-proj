@@ -27,3 +27,23 @@ closeModalBtn.addEventListener("click", () => {
 addServiceSidebar.addEventListener("click", () => {
   modal.open();
 });
+
+// SIDEBAR ROUTING
+
+const SIDEBAR_ROUTES = [
+  "/frontend/pages/admin/dashboard",
+  "/frontend/pages/admin/customers",
+  "/frontend/pages/admin/orders",
+  "/frontend/pages/admin/services",
+  "/frontend/pages/admin/analytics",
+  "/frontend/pages/admin/settings",
+];
+
+const sidebar = document.querySelectorAll("aside a");
+
+sidebar.forEach((option, index) => {
+  if (index < 5)
+    option.addEventListener("click", () => {
+      window.location.href = SIDEBAR_ROUTES[index];
+    });
+});

@@ -567,3 +567,10 @@ ul .booking-card:hover .informations-container .more-information {
 h1 {
   margin: 10px 20px;
 }
+
+.cards-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

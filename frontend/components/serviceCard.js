@@ -236,7 +236,7 @@ class ServiceCard extends HTMLElement {
       <li
         class="booking-card"
         style="
-          background-image: url(https://images.unsplash.com/photo-1525138079-9424be9df411?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80);
+          background-image: url(${this.getAttribute("image")});
         "
       >
         <div class="book-container">
@@ -248,7 +248,9 @@ class ServiceCard extends HTMLElement {
           <h2 class="title">${
             this.getAttribute("serviceName") ?? "Service name"
           }</h2>
-          <p class="sub-title">Short service description</p>
+          <p class="sub-title">${
+            this.getAttribute("serviceDescription") ?? "Service Description"
+          }</p>
           <p class="price">
             <svg
               class="icon"
@@ -259,7 +261,7 @@ class ServiceCard extends HTMLElement {
                 fill="currentColor"
                 d="M3,6H21V18H3V6M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M7,8A2,2 0 0,1 5,10V14A2,2 0 0,1 7,16H17A2,2 0 0,1 19,14V10A2,2 0 0,1 17,8H7Z"
               /></svg
-            >150 €
+            >${this.getAttribute("servicePrice") ?? "???"}
           </p>
           <div class="more-information">
             <div class="info-and-date-container">
