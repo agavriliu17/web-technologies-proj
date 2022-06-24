@@ -30,6 +30,14 @@ const {
   deleteOrder,
   getOrdersForUser,
 } = require("./controllers/ordersController");
+const {
+  topRegionsByOrder,
+  topServicesByOrder,
+  topServicesPerRegion,
+  topUsersByOrder,
+  totalOrders,
+  totalUsers,
+} = require("./controllers/statisticsController");
 const { buildRss } = require("./RSSFeed/rssApp");
 
 const server = http.createServer((req, res) => {
@@ -161,7 +169,34 @@ const server = http.createServer((req, res) => {
   else if (req.method === "OPTIONS") {
     res.writeHead(200, HEADERS);
     res.end();
-  } else {
+  }
+  //Regions sorted by number of orders (Max -> Min)  /api/v1/stats/top-regions-by-order
+  else if (req.url == ROUTES.topRegionsByOrder && req.method === "GET"){
+    topRegionsByOrder(req, res);
+  }
+  //Services sorted by number of orders (Max -> Min)  /api/v1/stats/top-services-by-order
+  else if (req.url == ROUTES.topServicesByOrder && req.method === "GET"){
+    topServicesByOrder(req, res);
+  }
+  //Top ordered service for each region  /api/v1/stats/top-services-per-region
+  else if (req.url == ROUTES.topServicesPerRegion && req.method === "GET"){
+    topServicesPerRegion(req, res);
+  }
+  //Users sorted by number of orders placed (Max -> Min)  /api/v1/stats/top-users-by-order
+  else if (req.url == ROUTES.topUsersByOrder && req.method === "GET"){
+    topUsersByOrder(req, res);
+  }
+  //Total orders  /api/v1/stats/total-orders
+  else if (req.url == ROUTES.totalOrders && req.method === "GET"){
+    totalOrders(req, res);
+  }
+  //Total users  /api/v1/stats/total-users
+  else if (req.url == ROUTES.totalUsers && req.method === "GET"){
+    totalUsers(req, res);
+  }
+  //Unknown Request
+  else {
+    console.log(req.url);
     res.writeHead(400, HEADERS);
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }

@@ -17,6 +17,12 @@ const ROUTES = {
   getUsersOrders: /\/api\/v1\/orders\/user=([0-9a-f\-]+$)/,
   updateUserPOST: /\/api\/v1\/users\/update-id=([0-9a-f\-]+$)/,
   deleteUserGET: /\/api\/v1\/users\/delete-id=([0-9a-f\-]+$)/,
+  topRegionsByOrder : '/api/v1/stats/top-regions-by-order',
+  topUsersByOrder : '/api/v1/stats/top-users-by-order',
+  topServicesByOrder : '/api/v1/stats/top-services-by-order',
+  topServicesPerRegion : '/api/v1/stats/top-services-per-region',
+  totalOrders : '/api/v1/stats/total-orders',
+  totalUsers : '/api/v1/stats/total-users',
 };
 
 const HEADERS = {
@@ -31,8 +37,8 @@ const QUERRIES = {
   topRegionsByOrderCount : 'SELECT count(o.id) as frequency, s.region FROM orders o INNER JOIN services s ON o.id_service = s.id GROUP BY s.region ORDER BY frequency DESC;',
   topUsersByOrderCount : 'SELECT u.id, u.nickname, u.name, count(o.id) as order_count FROM users u INNER JOIN orders o ON o.id_user = u.id GROUP BY u.id ORDER BY order_count DESC;',
   topServicesByOrderCount : 'SELECT s.id, s.name, count(o.id) as frequency FROM services s INNER JOIN orders o ON o.id_service = s.id GROUP BY s.id ORDER BY frequency DESC;',
-  totalOrders : 'SELECT count(id) FROM users;',
-  totalUsers : 'SELECT count(id) FROM orders;',
+  totalOrders : 'SELECT count(id) FROM orders;',
+  totalUsers : 'SELECT count(id) FROM users;',
   topServicesPerRegion : 'SELECT s.id, s.name, count(o.id), s.region as frequency FROM services s INNER JOIN orders o ON o.id_service = s.id GROUP BY s.id ORDER BY frequency DESC;',
 };
 
@@ -41,5 +47,6 @@ const SERVICE_IMAGE_DEFAULT = '../../../resources/images/services/service.jpg';
 module.exports = {
   ROUTES,
   HEADERS,
-  SERVICE_IMAGE_DEFAULT
+  SERVICE_IMAGE_DEFAULT,
+  QUERRIES,
 };
