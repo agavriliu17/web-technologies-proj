@@ -414,3 +414,22 @@ main .all-customers a {
     font-size: 2rem;
   }
 }
+
+/*Customer Details*/
+.clickable-button:hover{
+  cursor: pointer;
+}
+#overlay{
+  display: none;
+  position: fixed;
+  bottom: 30vh;
+  left: 25vw;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  z-index: 9;
+}
+.overlay-container{
+  width: 50vw;
+  padding: 3em;
+  background-color: var(--color-background);
+}
