@@ -3,27 +3,18 @@ const menuBtn = document.querySelector("#menu-btn");
 const closeBtn = document.querySelector("#close-btn");
 
 const apiURL = "http://localhost:3010/api/v1/users";
+const overlay = document.getElementById("overlay");
+
+function displayOverlay(element){
+  overlay.style.display = "block";
+  console.log(element.id);
+}
 
 function formatRole(role, cell) {
   switch (role.toLowerCase()) {
     case "client":
       var roleCell = document.createTextNode("Client");
       cell.classList.add("warning");
-
-const apiURL = 'http://localhost:3010/api/v1/users';
-const overlay = document.getElementById("overlay");
-
-function displayOverlay(element){
-  overlay.style.display = 'block';
-  console.log(element.id);
-}
-
-function formatRole(role, cell){
-  switch(role.toLowerCase()){
-    case 'client':
-      var roleCell = document.createTextNode('Client');
-      cell.classList.add('warning');
-
       cell.appendChild(roleCell);
       break;
     case "super admin":
@@ -74,17 +65,15 @@ function generateTable(users, tableId) {
     row.appendChild(roleColumn);
 
 
+    
+    
+
     const detailsColumn = document.createElement("td");
     const details = document.createTextNode("Details");
     detailsColumn.classList.add("primary");
+    detailsColumn.classList.add("clickable-button");    
+    detailsColumn.setAttribute("onclick", "displayOverlay(this)");
     detailsColumn.setAttribute("id", user.id);
-
-    const detailsColumn = document.createElement('td');
-    const details = document.createTextNode('Details');
-    detailsColumn.classList.add('primary');
-    detailsColumn.classList.add('clickable-button');    
-    detailsColumn.setAttribute('onclick', 'displayOverlay(this)');
-    detailsColumn.setAttribute('id', user.id);
 
     detailsColumn.appendChild(details);
     row.appendChild(detailsColumn);
