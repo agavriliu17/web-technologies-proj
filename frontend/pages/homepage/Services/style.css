@@ -721,3 +721,20 @@ header .container {
     text-align: center;
   }
 }
+
+/*Order notification*/
+#order-notification{
+  position: fixed;
+  padding: 1em 1.4em;
+  background-color: green; /* Red */
+  color: white;
+  margin-bottom: 15px;
+  display: block;
+  text-align: center;
+  border-radius: 0px 8px 8px 0px;
+  top: 70vh;
+  left: -15em;
+  z-index: 1;
+  transition: all 400ms;
+}
+

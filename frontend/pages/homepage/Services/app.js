@@ -57,6 +57,8 @@ function redirectToOrders(){
 }
 
 function processOrder(element){
+  const notification = document.getElementById('order-notification');
+  
   body = {
     id_user : currentUser,
     id_service : element.id,
@@ -74,6 +76,8 @@ function processOrder(element){
   })
     .then((res) => {
       console.log(res.json());
+      notification.style.left = '0';
+      setTimeout(()=>{notification.style.left = '-15em'},1200);
     });
 }
 
