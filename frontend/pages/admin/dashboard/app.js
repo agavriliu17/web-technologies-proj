@@ -10,10 +10,6 @@ closeBtn.addEventListener("click", () => {
   sideMenu.style.display = "none";
 });
 
-doneButton.addEventListener("click", () => {
-  modal.addService();
-});
-
 //modal actions
 const modal = document.querySelector("custom-modal");
 const addProduct = document.getElementsByClassName("item add-product");
@@ -31,6 +27,10 @@ closeModalBtn.addEventListener("click", () => {
 
 addServiceSidebar.addEventListener("click", () => {
   modal.open();
+});
+
+doneButton.addEventListener("click", () => {
+  modal.addService();
 });
 
 // SIDEBAR ROUTING

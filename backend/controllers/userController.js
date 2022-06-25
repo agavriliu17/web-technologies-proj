@@ -162,14 +162,16 @@ async function loginUser(req, res) {
 
     if (!user) {
       res.writeHead(401, HEADERS);
-      res.end(JSON.stringify({ message: "User not found!" }));
+      return res.end(JSON.stringify({ message: "User not found!" }));
     }
 
-    const valid = await bcrypt.compare(password, user.password);
+    const valid = await bcrypt.compare(password, user?.password);
 
     if (!valid) {
       res.writeHead(401, HEADERS);
-      res.end(JSON.stringify({ message: "Provided password is invalid!" }));
+      return res.end(
+        JSON.stringify({ message: "Provided password is invalid!" })
+      );
     }
 
     //TODO: Move secret key in env
@@ -182,7 +184,7 @@ async function loginUser(req, res) {
   } catch (e) {
     console.log(e);
     res.writeHead(500, HEADERS);
-    res.end(JSON.stringify({ message: "Something went wrong" }));
+    return res.end(JSON.stringify({ message: "Something went wrong" }));
   }
 }
 

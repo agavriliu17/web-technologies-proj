@@ -38,8 +38,11 @@ const getDataFromInputSignIn = async function () {
         }),
       }).then((res) => res.text());
 
+      const obj = JSON.parse(jwt);
+      console.log(obj);
+
       localStorage.setItem("token", `Bearer ${JSON.parse(jwt)}`);
-      window.location.href = "/frontend/pages/homepage/Services/index.html";
+      // window.location.href = "/frontend/pages/homepage/Services/index.html";
     } catch (e) {
       console.log(e);
     }
@@ -59,7 +62,6 @@ const getDataFromInputSignUp = function () {
     let emailSignUpValue = emailSignUp.value;
     let passwordSignUpValue = passwordSignUp.value;
 
-    console.log(nameSignUpValue, emailSignUpValue, passwordSignUpValue);
     registerUser();
     main.classList.toggle("sign-up-mode");
   });
@@ -110,7 +112,5 @@ function registerUser() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
-  }).then((res) => {
-    console.log(res.json());
   });
 }

@@ -73,7 +73,12 @@ function getAllOrders() {
 
   var requestURL = apiURL + "user=" + urlParams.get("user");
   var orders;
-  fetch(requestURL)
+  fetch(requestURL, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+    },
+  })
     .then((res) => res.json())
     .then((data) => (orders = data))
     .then(() => generateList(orders, "content-list"));

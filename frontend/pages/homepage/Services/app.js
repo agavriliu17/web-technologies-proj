@@ -72,7 +72,6 @@ function processOrder(element) {
     },
     body: JSON.stringify(body),
   }).then((res) => {
-    console.log(res.json());
     notification.style.left = "0";
     setTimeout(() => {
       notification.style.left = "-15em";
@@ -173,7 +172,12 @@ function generateList(services, listId) {
 
 function getAllServices() {
   var services;
-  fetch(apiURL)
+  fetch(apiURL, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+    },
+  })
     .then((res) => res.json())
     .then((data) => (services = data))
     .then(() => generateList(services, "content-list"));

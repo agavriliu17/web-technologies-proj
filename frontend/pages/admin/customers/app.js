@@ -15,13 +15,13 @@ function removeAllChildNodes(parent) {
 function displayOverlay(element) {
   overlay.style.display = "block";
   currentDisplayedUser = element.id;
-  console.log(currentDisplayedUser);
+
   const getUserURL =
     "http://localhost:3010/api/v1/users/id=" + currentDisplayedUser;
   fetch(getUserURL, {
-    headers : {
-      "Authorization" : localStorage.getItem("token"),
-    }
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
   })
     .then((res) => res.json())
     .then((data) => {
@@ -45,14 +45,13 @@ function performUpdate() {
     password: newPassword,
     email: newEmail,
   };
-  console.log(body);
   const getUserURL =
     "http://localhost:3010/api/v1/users/update-id=" + currentDisplayedUser;
   fetch(getUserURL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization" : localStorage.getItem("token"),
+      Authorization: localStorage.getItem("token"),
     },
     body: JSON.stringify(body),
   }).then((res) => {
@@ -64,9 +63,9 @@ function performDelete() {
   const getUserURL =
     "http://localhost:3010/api/v1/users/delete-id=" + currentDisplayedUser;
   fetch(getUserURL, {
-    headers : {
-      "Authorization" : localStorage.getItem("token"),
-    }
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
   }).then((res) => {
     hideOverlay();
   });
@@ -150,9 +149,9 @@ function generateTable(users, tableId) {
 function getAllUsers() {
   var users;
   fetch(apiURL, {
-    headers : {
-      "Authorization" : localStorage.getItem("token"),
-    }
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
   })
     .then((res) => res.json())
     .then((data) => (users = data))

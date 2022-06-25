@@ -290,29 +290,33 @@ const server = http.createServer((req, res) => {
     totalUsers(req, res);
   }
   //Number of orders for a service in a month  /api/v1/stats/num-service-month
-  else if (req.url == ROUTES.numberOfOrdersPerMonthForService && req.method === "POST"){
+  else if (
+    req.url == ROUTES.numberOfOrdersPerMonthForService &&
+    req.method === "POST"
+  ) {
     ordersPerMonthForService(req, res);
   }
   //Get all services from a specified region /api/v1/stats/all-services-region
-  else if (req.url == ROUTES.allServicesFromRegion && req.method === "POST"){
+  else if (req.url == ROUTES.allServicesFromRegion && req.method === "POST") {
     servicesFromRegion(req, res);
   }
   //Get all service regions /api/v1/stats/all-regions
-  else if (req.url == ROUTES.allRegions && req.method === "GET"){
+  else if (req.url == ROUTES.allRegions && req.method === "GET") {
     getAllRegions(req, res);
   }
 
   //CORS
   else if (req.method === "OPTIONS") {
-    if(req.rawHeaders.indexOf('GET') !== -1 ||
-       req.rawHeaders.indexOf('PUT') !== -1 ||
-       req.rawHeaders.indexOf('POST') !== -1 ||
-       req.rawHeaders.indexOf('DELETE') !== -1 ||
-       req.rawHeaders.indexOf('PATCH') !== -1)
-    {
+    if (
+      req.rawHeaders.indexOf("GET") !== -1 ||
+      req.rawHeaders.indexOf("PUT") !== -1 ||
+      req.rawHeaders.indexOf("POST") !== -1 ||
+      req.rawHeaders.indexOf("DELETE") !== -1 ||
+      req.rawHeaders.indexOf("PATCH") !== -1
+    ) {
       res.writeHead(200, HEADERS);
       res.end();
-    }else{
+    } else {
       res.writeHead(401, HEADERS);
       res.end();
     }

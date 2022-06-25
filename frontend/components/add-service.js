@@ -146,14 +146,12 @@ class AddService extends HTMLElement {
     // element.parentElement.remove();
 
     const tagNumb = this.shadowRoot.querySelector(`#li-${elementIndex}`);
-    console.log(tagNumb);
 
     this.countTags();
   }
 
   addTag(e) {
     if (e.key === "Enter") {
-      console.log("enter");
       let tag = e.target.value.replace(/\s+/g, " ");
       if (tag.length > 1 && !this.tags.includes(tag)) {
         if (this.tags.length < 10) {

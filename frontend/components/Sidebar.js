@@ -278,7 +278,6 @@ class Sidebar extends HTMLElement {
     //   sideMenu.style.display = "block";
     // });
 
-    console.log(closeBtn);
     closeBtn.addEventListener("click", () => {
       sideMenu.style.display = "none";
     });

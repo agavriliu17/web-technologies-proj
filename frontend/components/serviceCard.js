@@ -299,6 +299,10 @@ class ServiceCard extends HTMLElement {
           )}`,
           {
             method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: localStorage.getItem("token"),
+            },
           }
         );
         if (res.status === 200) this.remove();

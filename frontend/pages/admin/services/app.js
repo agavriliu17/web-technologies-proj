@@ -31,7 +31,12 @@ doneButton.addEventListener("click", () => {
 
 getServices = async () => {
   const container = document.querySelector(".cards-container");
-  const data = await fetch(apiURL).then((res) => res.json());
+  const data = await fetch(apiURL, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+    },
+  }).then((res) => res.json());
 
   let serviceCards = "";
 
