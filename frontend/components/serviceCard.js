@@ -290,9 +290,19 @@ class ServiceCard extends HTMLElement {
   }
 
   delete() {
-    this.shadowRoot.querySelector(".btn").addEventListener("click", () => {
-      console.log("delete item");
-    });
+    this.shadowRoot
+      .querySelector(".btn")
+      .addEventListener("click", async () => {
+        const res = await fetch(
+          `http://localhost:3010/api/v1/services/${this.getAttribute(
+            "identifier"
+          )}`,
+          {
+            method: "DELETE",
+          }
+        );
+        if (res.status === 200) this.remove();
+      });
   }
 }
 

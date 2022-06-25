@@ -14,6 +14,7 @@ closeBtn.addEventListener("click", () => {
 const modal = document.querySelector("custom-modal");
 const closeModalBtn = document.querySelector("#close-modal");
 const addServiceSidebar = document.querySelector("#open-modal");
+const doneButton = document.querySelector("#add-service");
 
 closeModalBtn.addEventListener("click", () => {
   modal.close();
@@ -21,6 +22,10 @@ closeModalBtn.addEventListener("click", () => {
 
 addServiceSidebar.addEventListener("click", () => {
   modal.open();
+});
+
+doneButton.addEventListener("click", () => {
+  modal.addService();
 });
 
 // SIDEBAR ROUTING

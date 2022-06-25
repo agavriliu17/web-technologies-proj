@@ -10,11 +10,16 @@ closeBtn.addEventListener("click", () => {
   sideMenu.style.display = "none";
 });
 
+doneButton.addEventListener("click", () => {
+  modal.addService();
+});
+
 //modal actions
 const modal = document.querySelector("custom-modal");
 const addProduct = document.getElementsByClassName("item add-product");
 const closeModalBtn = document.querySelector("#close-modal");
 const addServiceSidebar = document.querySelector("#open-modal");
+const doneButton = document.querySelector("#add-service");
 
 addProduct[0].addEventListener("click", () => {
   modal.open();
