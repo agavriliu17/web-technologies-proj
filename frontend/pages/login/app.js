@@ -30,19 +30,22 @@ const getDataFromInputSignIn = async function () {
     const passwordSignInValue = passwordSignIn.value;
 
     try {
-      const jwt = await fetch("http://localhost:3010/api/v1/login", {
+      const res = await fetch("http://localhost:3010/api/v1/login", {
         method: "POST",
         body: JSON.stringify({
           password: passwordSignInValue,
           email: nameSignInValue,
         }),
-      }).then((res) => res.text());
+      }).then((res) => res.text()).then(data=>JSON.parse(data));
 
-      const obj = JSON.parse(jwt);
-      console.log(obj);
+      console.log("here",res);
 
-      localStorage.setItem("token", `Bearer ${JSON.parse(jwt)}`);
+      localStorage.setItem("token", `Bearer ${res.token}`);
+      if(res.role ==="client")
       window.location.href = "../homepage/Services/index.html";
+      else{
+        window.location.href = "../admin/dashboard/index.html";
+      }
     } catch (e) {
       console.log(e);
     }

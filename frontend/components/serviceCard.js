@@ -293,19 +293,21 @@ class ServiceCard extends HTMLElement {
     this.shadowRoot
       .querySelector(".btn")
       .addEventListener("click", async () => {
-        const res = await fetch(
-          `http://localhost:3010/api/v1/services/${this.getAttribute(
-            "identifier"
-          )}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: localStorage.getItem("token"),
-            },
-          }
-        );
-        if (res.status === 200) this.remove();
+        this.remove();
+
+        // const res = await fetch(
+        //   `http://localhost:3010/api/v1/services/${this.getAttribute(
+        //     "identifier"
+        //   )}`,
+        //   {
+        //     method: "DELETE",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //       Authorization: localStorage.getItem("token"),
+        //     },
+        //   }
+        // );
+        // if (res.status === 200) this.remove();
       });
   }
 }

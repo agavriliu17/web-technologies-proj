@@ -36,12 +36,12 @@ doneButton.addEventListener("click", () => {
 // SIDEBAR ROUTING
 
 const SIDEBAR_ROUTES = [
-  "/frontend/pages/admin/dashboard",
-  "/frontend/pages/admin/customers",
-  "/frontend/pages/admin/orders",
-  "/frontend/pages/admin/services",
-  "/frontend/pages/admin/analytics",
-  "/frontend/pages/admin/settings",
+  "../dashboard/index.html",
+  "../customers/index.html",
+  "../orders/index.html",
+  "../services/index.html",
+  "../analytics/index.html",
+  "../settings/index.html",
 ];
 
 const sidebar = document.querySelectorAll("aside a");
@@ -98,7 +98,7 @@ const logoutButton = document.querySelector("#logout-btn");
 
 logoutButton.addEventListener("click", () => {
   localStorage.removeItem("token");
-  window.location.href = "/frontend/pages/login";
+  window.location.href = "../login";
 });
 
 const chart = document.querySelector("#chart-1").getContext("2d");

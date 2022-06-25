@@ -190,5 +190,5 @@ const logoutButton = document.querySelector("#logout-btn");
 
 logoutButton.addEventListener("click", () => {
   localStorage.removeItem("token");
-  window.location.href = "/frontend/pages/login";
+  window.location.href = "../../login/index.html";
 });

@@ -180,7 +180,7 @@ async function loginUser(req, res) {
     });
 
     res.writeHead(200, HEADERS);
-    return res.end(JSON.stringify(token));
+    return res.end(JSON.stringify({token:token, role:user.role}));
   } catch (e) {
     console.log(e);
     res.writeHead(500, HEADERS);

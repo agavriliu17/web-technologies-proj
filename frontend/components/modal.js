@@ -127,7 +127,7 @@ class Modal extends HTMLElement {
 
         if (res.status === 201) {
           this.close();
-          window.location.href = "/frontend/pages/admin/services/index.html";
+          window.location.href = "../services/index.html";
         }
       } catch (e) {
         console.log(e);
