@@ -18,7 +18,11 @@ function displayOverlay(element) {
   console.log(currentDisplayedUser);
   const getUserURL =
     "http://localhost:3010/api/v1/users/id=" + currentDisplayedUser;
-  fetch(getUserURL)
+  fetch(getUserURL, {
+    headers : {
+      "Authorization" : localStorage.getItem("token"),
+    }
+  })
     .then((res) => res.json())
     .then((data) => {
       const infoName = (document.getElementById("info-name").innerHTML =
@@ -48,6 +52,7 @@ function performUpdate() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization" : localStorage.getItem("token"),
     },
     body: JSON.stringify(body),
   }).then((res) => {
@@ -58,7 +63,11 @@ function performUpdate() {
 function performDelete() {
   const getUserURL =
     "http://localhost:3010/api/v1/users/delete-id=" + currentDisplayedUser;
-  fetch(getUserURL).then((res) => {
+  fetch(getUserURL, {
+    headers : {
+      "Authorization" : localStorage.getItem("token"),
+    }
+  }).then((res) => {
     hideOverlay();
   });
 }
@@ -140,7 +149,11 @@ function generateTable(users, tableId) {
 
 function getAllUsers() {
   var users;
-  fetch(apiURL)
+  fetch(apiURL, {
+    headers : {
+      "Authorization" : localStorage.getItem("token"),
+    }
+  })
     .then((res) => res.json())
     .then((data) => (users = data))
     .then(() => generateTable(users, "content-table"));

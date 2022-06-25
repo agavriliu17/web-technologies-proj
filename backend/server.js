@@ -53,9 +53,9 @@ const server = http.createServer((req, res) => {
   //Get all users, path: /api/v1/users
   else if (req.url === ROUTES.getUsers && req.method === "GET") {
     if(verifyToken(req, res)){
-      console.log('Passed');
       getUsers(req, res);
     }else {
+      console.log(req.headers["authorization"]);
       res.writeHead(403, HEADERS);
       res.end();
     }
