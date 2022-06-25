@@ -42,7 +42,7 @@ const getDataFromInputSignIn = async function () {
       console.log(obj);
 
       localStorage.setItem("token", `Bearer ${JSON.parse(jwt)}`);
-      // window.location.href = "/frontend/pages/homepage/Services/index.html";
+      window.location.href = "../homepage/Services/index.html";
     } catch (e) {
       console.log(e);
     }
