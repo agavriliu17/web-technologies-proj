@@ -4,15 +4,15 @@
         <description><![CDATA[The list of all available SerP services at the moment.]]></description>
         <link>http://github.com/dylang/node-rss</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 24 Jun 2022 10:25:47 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 25 Jun 2022 11:23:04 GMT</lastBuildDate>
         <author><![CDATA[SerP]]></author>
         <item>
-            <title><![CDATA[Golf]]></title>
-            <description><![CDATA[Play some golf]]></description>
-            <guid isPermaLink="false">Golf</guid>
+            <title><![CDATA[Karting]]></title>
+            <description><![CDATA[Race other people with karts on a closed track. Time to have some fun!]]></description>
+            <guid isPermaLink="false">Karting</guid>
             <dc:creator><![CDATA[SerP]]></dc:creator>
-            <description>Play some golf</description>
-            <price>200 EURO / 1 hr</price>
+            <description>Race other people with karts on a closed track. Time to have some fun!</description>
+            <price>20 EURO / 1 hr</price>
         </item>
         <item>
             <title><![CDATA[Mini Golf]]></title>
@@ -39,12 +39,28 @@
             <price>60 EURO / 1 hr</price>
         </item>
         <item>
-            <title><![CDATA[Karting]]></title>
+            <title><![CDATA[Golf]]></title>
+            <description><![CDATA[Play some golf]]></description>
+            <guid isPermaLink="false">Golf</guid>
+            <dc:creator><![CDATA[SerP]]></dc:creator>
+            <description>Play some golf</description>
+            <price>200 EURO / 1 hr</price>
+        </item>
+        <item>
+            <title><![CDATA[Racing GT3]]></title>
             <description><![CDATA[Race other people with karts on a closed track. Time to have some fun!]]></description>
-            <guid isPermaLink="false">Karting</guid>
+            <guid isPermaLink="false">Racing GT3</guid>
             <dc:creator><![CDATA[SerP]]></dc:creator>
             <description>Race other people with karts on a closed track. Time to have some fun!</description>
             <price>20 EURO / 1 hr</price>
+        </item>
+        <item>
+            <title><![CDATA[Private chef]]></title>
+            <description><![CDATA[Demo description]]></description>
+            <guid isPermaLink="false">Private chef</guid>
+            <dc:creator><![CDATA[SerP]]></dc:creator>
+            <description>Demo description</description>
+            <price>150</price>
         </item>
     </channel>
 </rss>

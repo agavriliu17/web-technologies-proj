@@ -52,10 +52,27 @@
 
 		<h3>Security requirements</h3>
 		<ul>
+			<li><p>Used Web components for the modals and services cards</p></li>
+			<li><p>Encapsulated styles and scripts</p></li>
+		</ul>
+
+		<h3>Web components</h3>
+		<ul>
 			<li><p>Protect against SQL injection</p></li>
-			<li><p>Use secure cookies</p></li>
 			<li><p>Ensure sitewide SSL</p></li>
 			<li><p>Using JWT for authentication</p></li>
+		</ul>
+
+		<h1>Backend</h1>
+		<h3>Database implementation</h3>
+		<ul>
+			<li><p>DB structured in 3 tables: Users, Services, Orders</p></li>
+			<li><p>Allows access for statistics information</p></li>
+		</ul>
+		<h3>REST API</h3>
+		<ul>
+			<li><p>Structured project in: Controllers, Models, Resources, RSS feed</p></li>
+			<li><p>Implemented RSS feed for accessing data from database</p></li>
 		</ul>
 
 		<h1>Semantics Overlay</h1>
@@ -97,15 +114,16 @@
 			<li><p>Creating an account</p></li>
 			<li><p>Viewing Services</p></li>
 			<li><p>Ordering Services</p></li>
-			<li><p>Accessing Service History</p></li>
 			<li><p>Accessing statistics regarding services</p></li>
 			<li><p>Adding, removing and changing services</p></li>
-			<li><p>Leaving feedback</p></li>
+			<li><p>Exporting statistics</p></li>
+			<li><p>Offering an RSS feed about available services</p></li>
+
 		</ul>
 
 		<h3>User manual</h3>
 		<h4>As a client user:</h4>
-		<p>&emsp;On first arrival the user is accessing the landing page. Here he/she can get general information about the company, contact the company or go to the authentication page, where one can log-in to an existing account or create a new one.<br>&emsp;After a succesful authentication, the user is presented the home page where he/she may view, access and order any available services. Also the user can manage his/her account in the "My Account" section.</p>
+		<p>&emsp;On first arrival the user is accessing the landing page. Here he/she can get general information about the company, contact the company or go to the authentication page, where one can log-in to an existing account or create a new one.<br>&emsp;After a succesful authentication, the user is presented the home page where he/she may view, access and order any available services.</p>
 
 		<h4>As an admin user:</h4>
 		<p>&emsp;To access the admin dash-board, the user must log-in to an Admin Account. After a succesful authorization, the admin is presented the admin page. Here he/she can see detailed statistics on user activity, manage services and orders and manage his/her account.</p>
@@ -120,6 +138,11 @@
 			<li><p>Implement the navigation bar on all pages</p></li>
 			<li><p>Implemented responsive design</p></li>
 			<li><p>[Landing Page] Implement Presentation section, About Us section and Contact Us section</p></li>
+			<li><p>[Admin] Implemented dashboard, services, analytics</p></li>
+			<li><p>[Backend] Implemented authorization</p></li>
+			<li><p>[Admin] Web components</p></li>
+			<li><p>Statistics page + exports</p></li>
+			<li><p>Querry for backend + help on building API</p></li>
 		</ul>
 
 		<h3>Erhan Adrian</h3>
@@ -130,6 +153,10 @@
 			<li><p>Implemented responsive design</p></li>
 			<li><p>Code refactoring</p></li>
 			<li><p>Developed the technical report</p></li>
+			<li><p>[Backend] Implemented REST API</p></li>
+			<li><p>[Backend] Database implementation</p></li>
+			<li><p>[Front End] Fetch API + statistics queries</p></li>
+			<li><p>[Backend] RSS feed of all serivces</p></li>
 		</ul>
     </section>
   </body>
