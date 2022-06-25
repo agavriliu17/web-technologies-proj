@@ -1,5 +1,6 @@
 const { ROUTES, HEADERS } = require("./resources/constants");
 const http = require("http");
+const jwt = require("jsonwebtoken");
 const {
   getUsers,
   getUserByNickname,
@@ -48,7 +49,13 @@ const server = http.createServer((req, res) => {
 
   //Get all users, path: /api/v1/users
   else if (req.url === ROUTES.getUsers && req.method === "GET") {
-    getUsers(req, res);
+    if(verifyToken(req, res)){
+      console.log('Passed');
+      getUsers(req, res);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
 
   //Create user, path: /api/v1/register
@@ -56,98 +63,192 @@ const server = http.createServer((req, res) => {
     registerUser(req, res);
   }
 
-  //Login user, path: /api/v1/users/register
+  //Login user, path: /api/v1/users/login
   else if (req.url === ROUTES.loginUser && req.method === "POST") {
     loginUser(req, res);
   }
   
   //Update user by id with POST request to bypass CORS error, path: /api/v1/users/update-id={id}
   else if(req.url.match(ROUTES.updateUserPOST) && req.method === "POST"){
-    const info = req.url.split("/")[4];
-    const id = info.split("=")[1];
-    updateUserById(req, res, id);
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const id = info.split("=")[1];
+      updateUserById(req, res, id);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
 
   //Delete user by id with GET request to bypass CORS error, path: /api/v1/users/delete-id={id}
   else if(req.url.match(ROUTES.deleteUserGET) && req.method === "GET"){
-    const info = req.url.split("/")[4];
-    const id = info.split("=")[1];
-    deleteUserById(req, res, id);
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const id = info.split("=")[1];
+      deleteUserById(req, res, id);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
 
   //Process user by id, path: /api/v1/users/id={id}
   else if (req.url.match(ROUTES.getUserById)) {
-    const info = req.url.split("/")[4];
-    const id = info.split("=")[1];
-    processIdRequest(req, res, id);
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const id = info.split("=")[1];
+      processIdRequest(req, res, id);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
 
   //Process user by nickname, path: /api/v1/users/nickname={nickname}
   else if (req.url.match(ROUTES.getUserByNickname)) {
-    const info = req.url.split("/")[4];
-    const nickname = info.split("=")[1];
-    processNicknameRequest(req, res, nickname);
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const nickname = info.split("=")[1];
+      processNicknameRequest(req, res, nickname);      
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
 
   //Process user by email, path: /api/v1/users/email={email}
   else if (req.url.match(ROUTES.getUserByEmail)) {
-    const info = req.url.split("/")[4];
-    const email = info.split("=")[1];
-    processEmailRequest(req, res, email);
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const email = info.split("=")[1];
+      processEmailRequest(req, res, email);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
   //Services:
   //Get all services, path: /api/v1/services
   else if (req.url === ROUTES.getServices && req.method === "GET") {
-    getServices(req, res);
+    if(verifyToken(req, res)){
+      // Call controller:
+      getServices(req, res);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
   //Add new service, path: /api/v1/add-service
   else if (req.url === ROUTES.addService && req.method === "POST") {
-    addService(req, res);
+    if(verifyToken(req, res)){
+      // Call controller:
+      addService(req, res); 
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
   //Get a service by it's id, path: /api/v1/services/id={id}
   else if (req.url.match(ROUTES.findServiceById) && req.method === "GET") {
-    const info = req.url.split("/")[4];
-    const id = info.split("=")[1];
-    getServiceById(req, res, id);
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const id = info.split("=")[1];
+      getServiceById(req, res, id);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
+
   }
   //Get all services that have the name provided or a similar name, path: /api/v1/services/name={name}
   else if (req.url.match(ROUTES.findServicesByName) && req.method === "GET") {
-    const info = req.url.split("/")[4];
-    const name = info.split("=")[1];
-    getServicesByName(req, res, name);
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const name = info.split("=")[1];
+      getServicesByName(req, res, name);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
+
   }
   //Update service info by id, path: /api/v1/services/id={id}
-  else if (req.url.match(ROUTES.findServiceById) && req.method == "PUT") {
-    const info = req.url.split("/")[4];
-    const id = info.split("=")[1];
-    updateService(req, res, id);
+  else if (req.url.match(ROUTES.findServiceById) && req.method == "POST") {
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const id = info.split("=")[1];
+      updateService(req, res, id);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
+
   }
-  //Delete service by id, path: /api/v1/services/id={id}
-  else if (req.url.match(ROUTES.findServiceById) && req.method == "DELETE") {
-    const info = req.url.split("/")[4];
-    const id = info.split("=")[1];
-    deleteService(req, res, id);
+  //Delete service by id, path: /api/v1/services/delete-id={id}
+  else if (req.url.match(ROUTES.deleteServiceById) && req.method == "GET") {
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const id = info.split("=")[1];
+      deleteService(req, res, id);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
+
   }
   //Orders:
   //Get all orders, path: /api/v1/orders
   else if (req.url === ROUTES.getOrders && req.method == "GET") {
-    getOrders(req, res);
+    if(verifyToken(req, res)){
+      // Call controller:
+      getOrders(req, res);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
   //Add new order, path: /api/v1/add-order
   else if (req.url === ROUTES.addOrder && req.method == "POST") {
-    addOrder(req, res);
+    if(verifyToken(req, res)){
+      // Call controller:
+      addOrder(req, res);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
   //Get order by id, path: /api/v1/orders/id={id}
   else if (req.url.match(ROUTES.getOrderById) && req.method == "GET") {
-    const info = req.url.split("/")[4];
-    const id = info.split("=")[1];
-    getOrderById(req, res, id);
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const id = info.split("=")[1];
+      getOrderById(req, res, id);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
   //Get orders made by a specific user, path: /api/v1/orders/user={id}
   else if (req.url.match(ROUTES.getUsersOrders) && req.method == "GET") {
-    const info = req.url.split("/")[4];
-    const id = info.split("=")[1];
-    getOrdersForUser(req, res, id);
+    if(verifyToken(req, res)){
+      // Call controller:
+      const info = req.url.split("/")[4];
+      const id = info.split("=")[1];
+      getOrdersForUser(req, res, id);
+    }else {
+      res.writeHead(403, HEADERS);
+      res.end();
+    }
   }
   //Update order by id, path: /api/v1/orders/id={id}
   else if (req.url.match(ROUTES.getOrderById) && req.method == "PUT") {
@@ -245,4 +346,25 @@ function processNicknameRequest(req, res, nickname) {
     res.writeHead(400, HEADERS);
     res.end(JSON.stringify({ message: "Unknown Request" }));
   }
+}
+
+
+//Token validation
+function verifyToken(req, res, next){
+  const bearerHeader = req.headers['authorization'];
+  if(typeof bearerHeader === "undefined"){
+    return false;
+  }
+  const bearer = bearerHeader.split(" ");
+  const bearerToken = bearer[1];
+  var valid = false;
+  jwt.verify(bearerToken, "supersecretkey", (err, data) => {
+    if(err){
+      console.log(err);
+    } else{
+      console.log(data);
+      valid = true;
+    }
+  });
+  return valid;
 }

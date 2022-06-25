@@ -59,11 +59,13 @@ const getDataFromInputSignUp = function () {
     let emailSignUpValue = emailSignUp.value;
     let passwordSignUpValue = passwordSignUp.value;
 
-    // console.log(nameSignUpValue, emailSignUpValue, passwordSignUpValue);
+    console.log(nameSignUpValue, emailSignUpValue, passwordSignUpValue);  
     registerUser();
     main.classList.toggle("sign-up-mode");
   });
 };
+getDataFromInputSignUp();
+
 
 // const redirectPage = function () {
 //   submitSignIn.addEventListener("click", function (ev) {
@@ -89,6 +91,8 @@ const getDataFromInputSignUp = function () {
 // };
 
 // redirectPage();
+
+
 
 function registerUser(){
   const name = document.getElementById('input-wrap-text-up').value;

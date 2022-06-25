@@ -9,6 +9,7 @@ const ROUTES = {
   getServices: '/api/v1/services',
   addService: '/api/v1/add-service',
   findServiceById: /\/api\/v1\/services\/id=([0-9a-f\-]+$)/,
+  deleteServiceById: /\/api\/v1\/services\/delete-id=([0-9a-f\-]+$)/,
   findServicesByName: /\/api\/v1\/services\/name=([a-zA-Z0-9_!\s.\(\)]+$)/,
   getOrders: '/api/v1/orders',
   addOrder: '/api/v1/add-order',
@@ -28,7 +29,7 @@ const ROUTES = {
 const HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST, GET, DELETE, PUT",
-  "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Credentials",
+  "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Credentials, Authorization",
   "Access-Control-Allow-Credentials": "true", 
   "Content-Type": "application/json"
 };
