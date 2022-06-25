@@ -1,6 +1,7 @@
 const sideMenu = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-btn");
 const closeBtn = document.querySelector("#close-btn");
+const chartColors = ["red", "green", "blue", "yellow", "black", "magenta", "purple"];
 
 menuBtn.addEventListener("click", () => {
   sideMenu.style.display = "block";
@@ -9,6 +10,10 @@ menuBtn.addEventListener("click", () => {
 closeBtn.addEventListener("click", () => {
   sideMenu.style.display = "none";
 });
+
+function randomColor(){
+  return chartColors[Math.floor((Math.random()*chartColors.length))];
+}
 
 //modal actions
 const modal = document.querySelector("custom-modal");
@@ -48,6 +53,47 @@ sidebar.forEach((option, index) => {
     });
 });
 
+// Fetch data from db
+function fetchRegion(region){
+  const getRegionsURL = "http://localhost:3010/api/v1/stats/all-services-region";
+  console.log("Fetching " + region);
+  fetch(getRegionsURL, {
+    body: JSON.stringify({region : region}),
+    method : 'POST',
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    var services = data;
+    for(service of services){
+      putServiceInChart(service.id);
+    }
+  });
+}
+
+function putServiceInChart(id){
+  const serviceURL = "http://localhost:3010/api/v1/services/id=" + id;
+  fetch(serviceURL, {
+    headers: {
+      "Authorization" : localStorage.getItem("token"),
+    }
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    var service = data;
+    const serviceData = {
+      label : service.name,
+      data: [
+        4324, 9452, 4301, 2433, 4321, 1432, 10211, 31233, 2132, 64321, 12313,
+      ],
+      borderColor: randomColor(),
+      borderWidth: 2,
+    }
+    revenueChart.data.datasets.push(serviceData);
+    revenueChart.update();
+    console.log(revenueChart.data.datasets);
+  });
+}
+
 //logout button
 const logoutButton = document.querySelector("#logout-btn");
 
@@ -69,7 +115,7 @@ const bgColor = {
 };
 
 //create chart instance
-const revenueChart = new Chart(chart, {
+var revenueChart = new Chart(chart, {
   type: "line",
   data: {
     labels: [
@@ -86,20 +132,20 @@ const revenueChart = new Chart(chart, {
       "Nov",
     ],
     datasets: [
-      {
-        label: "Service-1",
-        data: [
-          4324, 9452, 4301, 2433, 4321, 1432, 10211, 31233, 2132, 64321, 12313,
-        ],
-        borderColor: "red",
-        borderWidth: 2,
-      },
-      {
-        label: "Service-2",
-        data: [524, 952, 301, 2433, 4321, 132, 1211, 3213, 3232, 24321, 1413],
-        borderColor: "blue",
-        borderWidth: 2,
-      },
+      // {
+      //   label: "Service-1",
+      //   data: [
+      //     4324, 9452, 4301, 2433, 4321, 1432, 10211, 31233, 2132, 64321, 12313,
+      //   ],
+      //   borderColor: "red",
+      //   borderWidth: 2,
+      // },
+      // {
+      //   label: "Service-2",
+      //   data: [524, 952, 301, 2433, 4321, 132, 1211, 3213, 3232, 24321, 1413],
+      //   borderColor: "blue",
+      //   borderWidth: 2,
+      // },
     ],
     options: {
       responsive: true,
@@ -159,6 +205,7 @@ selectedAll.forEach((selected) => {
       }
 
       optionsContainer.classList.add("active");
+      
     }
 
     searchBox.value = "";
@@ -166,12 +213,14 @@ selectedAll.forEach((selected) => {
 
     if (optionsContainer.classList.contains("active")) {
       searchBox.focus();
+      
     }
   });
 
   optionsList.forEach((o) => {
     o.addEventListener("click", () => {
       selected.innerHTML = o.querySelector("label").innerHTML;
+      fetchRegion(selected.innerHTML);
       optionsContainer.classList.remove("active");
     });
   });

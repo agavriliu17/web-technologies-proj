@@ -142,6 +142,14 @@ async function servicesFromRegion(req, res){
                 JSON.stringify({ message: "Something went wrong!" })
             );
         }
+        var data = {orders : []};
+        for(service of result){
+            for(let i = 1; i <= 12; i++){
+                const monthOrder = await Statistics.ordersPerMonthForService(service.id, i);
+                data.orders.push(monthOrder);
+            }
+            console.log(data.orders);
+        }
         res.writeHead(200, HEADERS);
         res.end(JSON.stringify(result));
     } catch (error) {

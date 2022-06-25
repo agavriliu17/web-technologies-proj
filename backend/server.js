@@ -290,11 +290,11 @@ const server = http.createServer((req, res) => {
     totalUsers(req, res);
   }
   //Number of orders for a service in a month  /api/v1/stats/num-service-month
-  else if (req.url == ROUTES.numberOfOrdersPerMonthForService && req.method === "GET"){
+  else if (req.url == ROUTES.numberOfOrdersPerMonthForService && req.method === "POST"){
     ordersPerMonthForService(req, res);
   }
   //Get all services from a specified region /api/v1/stats/all-services-region
-  else if (req.url == ROUTES.allServicesFromRegion && req.method === "GET"){
+  else if (req.url == ROUTES.allServicesFromRegion && req.method === "POST"){
     servicesFromRegion(req, res);
   }
   //Get all service regions /api/v1/stats/all-regions
