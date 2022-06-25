@@ -38,6 +38,9 @@ const {
   topUsersByOrder,
   totalOrders,
   totalUsers,
+  ordersPerMonthForService,
+  servicesFromRegion,
+  getAllRegions,
 } = require("./controllers/statisticsController");
 const { buildRss } = require("./RSSFeed/rssApp");
 
@@ -294,6 +297,18 @@ const server = http.createServer((req, res) => {
   //Total users  /api/v1/stats/total-users
   else if (req.url == ROUTES.totalUsers && req.method === "GET"){
     totalUsers(req, res);
+  }
+  //Number of orders for a service in a month  /api/v1/stats/num-service-month
+  else if (req.url == ROUTES.numberOfOrdersPerMonthForService && req.method === "GET"){
+    ordersPerMonthForService(req, res);
+  }
+  //Get all services from a specified region /api/v1/stats/all-services-region
+  else if (req.url == ROUTES.allServicesFromRegion && req.method === "GET"){
+    servicesFromRegion(req, res);
+  }
+  //Get all service regions /api/v1/stats/all-regions
+  else if (req.url == ROUTES.allRegions && req.method === "GET"){
+    getAllRegions(req, res);
   }
   //Unknown Request
   else {

@@ -24,6 +24,9 @@ const ROUTES = {
   topServicesPerRegion : '/api/v1/stats/top-services-per-region',
   totalOrders : '/api/v1/stats/total-orders',
   totalUsers : '/api/v1/stats/total-users',
+  numberOfOrdersPerMonthForService : '/api/v1/stats/num-service-month',
+  allServicesFromRegion: '/api/v1/stats/all-services-region',
+  allRegions: '/api/v1/stats/all-regions',
 };
 
 const HEADERS = {
@@ -41,6 +44,11 @@ const QUERRIES = {
   totalOrders : 'SELECT count(id) FROM orders;',
   totalUsers : 'SELECT count(id) FROM users;',
   topServicesPerRegion : 'SELECT s.id, s.name, count(o.id), s.region as frequency FROM services s INNER JOIN orders o ON o.id_service = s.id GROUP BY s.id ORDER BY frequency DESC;',
+  bestSellingServicePerMonth : 'SELECT count(id) as frequency, id_service FROM orders WHERE EXTRACT(MONTH FROM date) = $1 GROUP BY id_service ORDER BY frequency DESC;',
+  numberOfOrdersPerMonthForService : 'SELECT count(id) as frequency FROM orders WHERE EXTRACT(MONTH FROM date) = $1 AND id_service = $2;',
+  allServicesFromRegion : 'SELECT id FROM services WHERE region = $1',
+  allRegions : 'SELECT region FROM services GROUP BY region',
+
 };
 
 const SERVICE_IMAGE_DEFAULT = '../../../resources/images/services/service.jpg';

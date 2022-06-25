@@ -109,6 +109,60 @@ function totalUsers(){
     });
 }
 
+function ordersPerMonthForService(id_service, month){
+    return new Promise((resolve, reject) => {
+        const client = getClient();
+        client.connect();
+        client.query(QUERRIES.numberOfOrdersPerMonthForService, [month, id_service], (err, res) => {
+            if(!err){
+                resolve(res.rows);
+            }
+            else{
+                console.log(`Error code: ${err.code}`);
+                console.log(err.stack);
+                resolve(null);
+            }
+            client.end();
+        });
+    });
+}
+
+function servicesFromRegion(region){
+    return new Promise((resolve, reject) => {
+        const client = getClient();
+        client.connect();
+        client.query(QUERRIES.allServicesFromRegion, [region], (err, res) => {
+            if(!err){
+                resolve(res.rows);
+            }
+            else{
+                console.log(`Error code: ${err.code}`);
+                console.log(err.stack);
+                resolve(null);
+            }
+            client.end();
+        });
+    });
+}
+
+function getAllRegions(){
+    return new Promise((resolve, reject) => {
+        const client = getClient();
+        client.connect();
+        client.query(QUERRIES.allRegions, (err, res) => {
+            if(!err){
+                resolve(res.rows);
+            }
+            else{
+                console.log(`Error code: ${err.code}`);
+                console.log(err.stack);
+                resolve(null);
+            }
+            client.end();
+        });
+    });
+}
+
 module.exports = {
     regionsByOrder,
     servicesByOrder,
@@ -116,4 +170,8 @@ module.exports = {
     usersByOrder,
     totalOrders,
     totalUsers,
+    ordersPerMonthForService,
+    servicesFromRegion,
+    getAllRegions,
+    
 }
