@@ -265,11 +265,6 @@ const server = http.createServer((req, res) => {
   else if (req.url === ROUTES.getRSS) {
     buildRss(res);
   }
-  //CORS
-  else if (req.method === "OPTIONS") {
-    res.writeHead(200, HEADERS);
-    res.end();
-  }
   //Regions sorted by number of orders (Max -> Min)  /api/v1/stats/top-regions-by-order
   else if (req.url == ROUTES.topRegionsByOrder && req.method === "GET") {
     topRegionsByOrder(req, res);
@@ -306,6 +301,23 @@ const server = http.createServer((req, res) => {
   else if (req.url == ROUTES.allRegions && req.method === "GET"){
     getAllRegions(req, res);
   }
+
+  //CORS
+  else if (req.method === "OPTIONS") {
+    if(req.rawHeaders.indexOf('GET') !== -1 ||
+       req.rawHeaders.indexOf('PUT') !== -1 ||
+       req.rawHeaders.indexOf('POST') !== -1 ||
+       req.rawHeaders.indexOf('DELETE') !== -1 ||
+       req.rawHeaders.indexOf('PATCH') !== -1)
+    {
+      res.writeHead(200, HEADERS);
+      res.end();
+    }else{
+      res.writeHead(401, HEADERS);
+      res.end();
+    }
+  }
+
   //Unknown Request
   else {
     console.log(req.url);
