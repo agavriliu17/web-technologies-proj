@@ -142,16 +142,19 @@ async function servicesFromRegion(req, res){
                 JSON.stringify({ message: "Something went wrong!" })
             );
         }
-        var data = {orders : []};
+        var resultList = [];
         for(service of result){
+            var data = [];
             for(let i = 1; i <= 12; i++){
                 const monthOrder = await Statistics.ordersPerMonthForService(service.id, i);
-                data.orders.push(monthOrder);
+                data.push(monthOrder[0].frequency);
             }
-            console.log(data.orders);
+            
+            const dataRow = {id : service.id, data};
+            resultList.push(dataRow);
         }
         res.writeHead(200, HEADERS);
-        res.end(JSON.stringify(result));
+        res.end(JSON.stringify(resultList));
     } catch (error) {
         console.log(error);
         res.writeHead(500, HEADERS);

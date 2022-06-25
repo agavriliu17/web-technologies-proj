@@ -64,13 +64,14 @@ function fetchRegion(region){
   .then((res) => res.json())
   .then((data) => {
     var services = data;
+    revenueChart.data.datasets = [];
     for(service of services){
-      putServiceInChart(service.id);
+      putServiceInChart(service.id, service.data);
     }
   });
 }
 
-function putServiceInChart(id){
+function putServiceInChart(id, serviceOrderData){
   const serviceURL = "http://localhost:3010/api/v1/services/id=" + id;
   fetch(serviceURL, {
     headers: {
@@ -82,9 +83,7 @@ function putServiceInChart(id){
     var service = data;
     const serviceData = {
       label : service.name,
-      data: [
-        4324, 9452, 4301, 2433, 4321, 1432, 10211, 31233, 2132, 64321, 12313,
-      ],
+      data: serviceOrderData,
       borderColor: randomColor(),
       borderWidth: 2,
     }
